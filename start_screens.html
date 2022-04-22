@@ -1,0 +1,27 @@
+<head>
+<script src="https://unpkg.com/vue@3"></script>
+	<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body id="app">
+	<div id="header" class="flex flex-col items-center">
+		<h1 class="text-2xl">
+			Start Screens
+		</h1>
+	</div>
+	<div class="flex flex-col items-center">
+		<h1>{{ message }}</h1>
+<video width="1000" autoplay loop muted src="https://gameclipscontent-d2015.xboxlive.com/xuid-2533274895487544-private/64b647d6-b62e-4e95-b4c4-4c6570128dce.MP4?sv=2015-12-11&sr=b&si=DefaultAccess&sig=ZI%2BJ1to8HCJexP9d7xPftu5yUxeQj06dfv%2BTi0j%2F4lo%3D&__gda__=1650590710_a171e65915f7ce1313a6ab669885d5a9">
+</video>	
+	</div>
+</body>
+
+<script>
+	Vue.createApp({
+		data() {
+			return {
+				message: 'HOLAAA'
+			}
+		}
+	}).mount('#app')
+</script>
