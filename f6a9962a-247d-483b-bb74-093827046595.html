@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Making History: The Calm &amp; The Storm</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Making History: The Calm &amp; The Storm</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:10</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-13/10/2022">13/10/2022</a> 22:36:51</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-3/3/2007">3/3/2007</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Muzzy Lane">Muzzy Lane</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Strategy First">Strategy First</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/6250" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/6250/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/6250/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=6250" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/6250" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=6250" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<p>Making History&reg; delivers the open-ended gameplay of strategy-game classics, but with compelling new economic, military, and diplomatic systems and deep research that lets you play with real historical challenges.</p>
+					<p>The game drops you into a rich WWII world where every nation has its own agenda, and where events can turn on a single alliance. Work with your nation's historic strengths and weaknesses. Build up your industry, infrastructure, economy, military. Create alliances. Then reshape your strategy as the world evolves with each turn.</p>
+					<ul>
+					<li><span class="copyHead">Rich WWII world:</span> MAKING HISTORY: The Calm & the Storm includes over 80 nations and 800+ regions. Each nation is given detailed characteristics built on extensive research, including economic and military strengths, diplomatic relations, ideology, and technical advancement. Each region features terrain, infrastructure, resource production and more.</li>
+					<li><span class="copyHead">You are your Nation:</span> Jump into a world in motion where every nation is pursuing its own agenda, and where events can turn on the breaking of a single alliance. Devise strategies based on your nation's historic strengths and weaknesses' and revise your plans as the world evolves in response to your actions. Play as the United Kingdom, France, Germany, Italy, Japan, the USSR, the United States, or China. </li>
+					<li><span class="copyHead">Multi-Turn Combat:</span> An innovative combat system allows many approaches to engagements from massive assaults to holding actions. Supplies, reinforcements and geography all affect your battle plan. </li>
+					<li><span class="copyHead">More Military Options:</span> Use unique unit abilities to blitzkrieg with armor, fight attrition battles with hordes of infantry, decimate enemy industry with strategic bombers, and bomb fleets from a distance with a carrier task force. With scientific research you can unlock more advanced military units, and every unit features a detailed 3D model. </li>
+					<li><span class="copyHead">Sophisticated World Economy:</span> The game's economic system models the connections between world power and economic strength. Players control trade, aid, industrial development, infrastructure investments, and a deep field of research. </li>
+					<li><span class="copyHead">Powerful Alliance System:</span> As you make and break alliances, declare war and propose peace, each action affects your relations with other nations, and their willingness to ally with you. If you lack strong allies, you may find other nations are more are more likely to attack. </li>
+					<li><span class="copyHead">Historic Scenarios:</span> Six scenarios let you start at a crucial historic moment, focus on a specific event, or play the whole war. Scenarios cover the fall of France, Pearl Harbor, the D-Day invasion of Europe, the Sudeten crisis and more, and each is based on detailed research. You can work to succeed where others failed, or take a different path and see what happens. </li>
+					<li><span class="copyHead">Superb replayability:</span> Each scenario drops you into a different firestorm. Each nation you play presents unique challenges. Everything evolves from your economic and military choices, the alliances you make, and the actions and reactions of the world's other nations. </li>
+					<li><span class="copyHead">Single and Multiplayer Turn-Based Gameplay:</span> Innovative simultaneous-turn-based play is quick and responsive, and keeps you in control with no waiting. Play with up to eight others in multiplayer mode, using in-game chat to devise joint strategies and secret pacts. Will you be a trusted ally or a backstabbing tyrant? </li>
+					<li><span class="copyHead">Built for Modding:</span> Use included Scenario Editor to modify scenarios or create your own. </li></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

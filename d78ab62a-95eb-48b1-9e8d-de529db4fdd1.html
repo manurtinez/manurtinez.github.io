@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Typing Instructor for Kids Platinum 5</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Typing Instructor for Kids Platinum 5</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:21</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-11/10/2022">11/10/2022</a> 22:52:01</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-67">67</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Education">Education</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Software Training">Software Training</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Individual Software">Individual Software</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Individual Software">Individual Software</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/393330" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/393330/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/393330/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=393330" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/393330" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=393330" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					Kids learn to type on an exciting adventure on Typer Island. They learn all keyboard basics following one of 11 age-appropriate Typing Plans. Step-by-step lessons, challenges, tests, and games motivate kids to keep typing their way around the Island to reach the Castle, advance to the Lost City, and become touch-typists! Kids can learn in English or Spanish. <br />
+<br />
+Reward-Seeking Program!<br />
+<br />
+This program offers rewards every step of the way! Kids visit distinct lands for lessons, challenges, tests, and games. They search for treasures, earn points, and add gold and jewels to their treasure box, on a journey to reach the Castle and become the Ruler of Typer Island. Once they reach the Castle, they advance to the Lost City, for more challenges and exciting games!<br />
+<br />
+Explore Distinct Lands!<br />
+<br />
+Kids visit The Old West, On the Water, In the Air, Over the Edge, and Under the Sea. They can take a break from lessons and go to the cave on Explorer Isle to play games, or to Story Lagoon to practice typing stories from Classic Literature and Fairy Tales.<br />
+<br />
+Exciting Castle Adventures!<br />
+<br />
+Once kids get to the Castle, they can play new games, like Tomb Typer and Xtreme Typing, and they can go to the Lost City for Treasure Quest and the ever-challenging Ziggy!<br />
+<br />
+The Mysterious Lost City!<br />
+<br />
+Kids get to visit the Lost City once they complete the lessons, tests, and challenges of all five lands on Typer Island and &quot;Capture the Castle!&quot; In the Lost City they can explore the ruins and the shipwreck, and play Treasure Quest, the first typing adventure game, and the challenging arcade action game, Ziggy.<br />
+<br />
+30+ Game Challenges!<br />
+<br />
+Typing Instructor for Kids Platinum has over 30+ Game Challenges! Kids can play games in a variety of ways by selecting options from the drop down menu, including words per minute (wpm), level of difficulty, and in some games, select an opponent. Games include multiple levels of play and points scored, so kids are motivated to win the first level, advance to the next level, and achieve a high game score!<br />
+<br />
+Xtreme Typing<br />
+<br />
+This fast moving game teaches kids to keep their fingers on the keyboard to move their motorcycle across the desert and through the heart of the city. When they type accurately and faster than their target words per minute, they see a motorcycle stunt fest! Their bike makes several jumps, flies off ramps, rolls over limousines, and flies over buses.<br />
+<br />
+Typing With Sharks<br />
+<br />
+This action-packed, underwater adventure helps kids learn challenging keys on the keyboard. They type words quickly to zap hungry sharks and piranhas before they attack their submarine. The deeper they dive, the harder it is to escape, especially from the electric eel, giant squid and the boss shark.<br />
+<br />
+Flotsam Fighter<br />
+<br />
+Kids use their Flotsam Fighter Space Ship to clean-up space debris (flotsam), and save all four planets in the Aeon Galaxy by zapping space debris from around the planets. The more debris they collect, the more intergalactic credits they earn. Eight challenging levels of play help them develop their typing speed, typing accuracy, and save the Galaxy!<br />
+<br />
+Tomb Typer!<br />
+<br />
+This 3D interactive game helps kids to improve their typing skills and use their wits! They search an ancient Egyptian tomb by correctly typing words and characters to navigate their way through two levels of intriguing exploration for treasure.<br />
+<br />
+There are 10 customized Typing Plans to teach kids of all ages to type:<br />
+<br />
+Learning the Home Row<br />
+Home Row and Upper Row<br />
+Home Row and Lower Row<br />
+Ages 7-8<br />
+Ages 9-10<br />
+Games Plan<br />
+Skill Building Plan<br />
+Suggested Typing Plan (no games)<br />
+Suggested Typing Plan<br />
+There are over 30 typing challenges. These include:<br />
+<br />
+There are hundreds of tests in Typing Instructor Platinum for Kids. Tests measure speed and accuracy, and results are provided for adjusted words per minute, based on both typing accuracy and speed.<br />
+<br />
+Instant Results Give Kids Incentive to Improve Keyboarding Skills<br />
+<br />
+Instant Feedback is provided on typing results. Kids can see how they did on a lesson, challenge, test, or game right away. Results are given for:<br />
+<br />
+WPM scores &amp; Accuracy Percentages<br />
+Results Calculated from All Activities<br />
+Performance Assessment for Key, Finger, Hand &amp; Row<br />
+Printable Results<br />
+Results Tracked for five Typists<br />
+<br />
+Certificates of Achievement<br />
+<br />
+Kids can print a certificate of achievement to show they have successfully conquered Typer Island and Rule the Island!<br />
+<br />
+Charts and Feedback<br />
+<br />
+Detailed results show kids the keys they know well and the keys that need more practice.<br />
+<br />
+Step-by-Step Typing Instruction is provided, including proper posture, finger position, and ergonomic features. Visual Guides show finger/key placement.
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

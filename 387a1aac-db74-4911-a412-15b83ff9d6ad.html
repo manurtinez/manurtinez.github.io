@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Badiya</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Badiya</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:26</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-11/10/2022">11/10/2022</a> 22:15:57</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-11/11/2016">11/11/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-51">51</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Early Access">Early Access</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-RPG">RPG</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Simulation">Simulation</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Semaphore">Semaphore</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Semaphore">Semaphore</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/545050" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/545050/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/545050/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=545050" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/545050" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=545050" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/545050/achievements" target="_blank">Logros</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-No Cloud Saves">No Cloud Saves</a><br/><a href="#quicklink-Unity">Unity</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					Experience the mystical desert culture just as industrialization was dawning upon it. The desert, with its harsh climate and fierce wildlife also hides such gems as the honor-bound bedouins, sites of ancient civilizations, and rare resources. Simultaneously, the rising industrial power of world war one offers a backdrop ripe with conflict and destruction as horse meets tank. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/Header-Welcome.png?t=1617198526" /><h2 class="bb_tag"><strong>INFINITE PROCEDURAL OPEN WORLD:</strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/world.jpg?t=1617198526" /><br>Every time you play you will see different looking terrain, events, enemy encounters, and items to loot.<h2 class="bb_tag"><strong>TIME OF DAY SYSTEM: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/night.jpg?t=1617198526" /><br>A full 24 hour cycle is available. You can sleep to pass time and regain stamina.<h2 class="bb_tag"><strong>WEATHER SYSTEM: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/sandstorms.jpg?t=1617198526" /><br>Clear, Cloudy, Overcast, Rain with different intensities, Snow with different intensities, Sandstorms and Fog.<h2 class="bb_tag"><strong>CHARACTER CUSTOMIZATION: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/customize.jpg?t=1617198526" /><br>Control your character ethnicity, skin tone, eye color, facial shape, facial hair, height and weight.<h2 class="bb_tag"><strong>BUILD YOUR WARDROBE: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/clothing.jpg?t=1617198526" /><br>Badiya features a collection of authentically designed Arabic and western clothing sets covering multiple styles for head-wear, upper body, lower body, feet and accessories. You can also mix an match if you like (Imagine an Arabian thobe with a Cowboy Hat. That would be cool!)<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/Header-Survive.png?t=1617198526" /><h2 class="bb_tag"><strong>WATCH FOR YOUR NEEDS: </strong></h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/oasis.jpg?t=1617198526" /><br>Keep an eye on your biometric indicators such as health, food, thirst, temperature (you can get Hypothermia and Hyperthermia if you are not careful). Balance your diet and food intake in-game because your character can gain weight or lose weight with visible visual difference.<h2 class="bb_tag"><strong>MINE AND HARVEST: </strong></h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br>Collect different types of plants that you can use to craft medical potions to help with poisoning, pain and stamina. Mine rocks to gather iron, gold, or cooper ore as well as other precious metals. Chop down trees for wood, fruits and plant fiber.<h2 class="bb_tag"><strong>CRAFT YOUR TOOLS: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br>Loot everything you can and gather resources to be able to craft all sorts of recipes for weapons, medicine, and tools.<h2 class="bb_tag"><strong>BUILD YOUR CAMP: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/camp.jpg?t=1617198526" /><br>You can craft and place a camp fire which can be used for cooking food and as a source of heat during cold nights, build a smelting station to turn minerals into useful materials, build a crafting bench to build advanced items and sleep in a tent to gain more stamina and health back.<h2 class="bb_tag"><strong>COOK YOUR MEALS: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br>Over 20 Middle Eastern local cuisines and soups can be cooked with a cooking station in addition to cooking plain meat.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/Header-Fight.png?t=1617198526" /><h2 class="bb_tag"><strong>DEADLY WEAPONS: </strong></h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br>Utilize an arsenal of weapons including side arms, rifles, machine guns and (in future alphas) flame throwers and sniper rifles.<h2 class="bb_tag"><strong>HUNT AND SKIN ANIMALS: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/hunting.jpg?t=1617198526" /><br>Hunt prey animals such as Rabbits, Deers, Oryx and many others and skin them to get their meat, hide, fur, fat and bones.<h2 class="bb_tag"><strong>FIGHT THE BEASTS: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br>Many wild animals roam the desert awaiting to skin their teeth into you including wolves, Leopards, Hyenas, Lynx, and stray Greyhounds.<h2 class="bb_tag"><strong>BANDITS AND MERCENARIES: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/bandits.jpg?t=1617198526" /><br>Guns Blazing vs Stealth. You have the choice to approach each situation to your liking wither its to launch a full blown attack or sneak your way through undetected while knocking enemies unconscious and dragging their bodies out of sight.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/Header-Thrive.png?t=1617198526" /><h2 class="bb_tag"><strong>TRADE: </strong></h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/merchants.jpg?t=1617198526" /><br>Buy, sell and trade with different merchants across bedouin camps and villages.<h2 class="bb_tag"><strong>TREASURE HUNT: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/treasure.jpg?t=1617198526" /><br>Hunt for treasures and riches hidden in bandit guarded ancient ruins.<h2 class="bb_tag"><strong>EMBARK ON QUESTS: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br>Embark on an unlimited number of quests that you can take from the locals that will ask you to gather items, transport items, secure bandit and mercenary locations, find treasures and many more.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/Header-Explore.png?t=1617198526" /><h2 class="bb_tag"><strong>RIDE: </strong></h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/tanks.jpg?t=1617198526" /><br>In addition to horses and camels, Badiya features authentic military vehicles including armored cars, tanks, planes, and dune buggies with customization features such as tire armour, different weapon choices, desert camouflage paint job, side lights and more.<h2 class="bb_tag"><strong>MAP SYSTEM WITH A POI COMPASS: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/map.jpg?t=1617198526" /><br>A fully featured map system with Fog of War that reveals only the parts that you explored. An optional POI compass appears on top of the screen and guides you to the locations of nearby points of interest.<h2 class="bb_tag"><strong>FAST TRAVEL THROUGH DESERT CARAVANS: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/caravan.jpg?t=1617198526" /><br>You can come across caravans that feature merchants to trade with, quest givers as well as the ability to fast travel to previously discovered points of interest for a cost.<h2 class="bb_tag"><strong>A RICH AND DIVERSE WORLD AWAITS YOU: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/bedouin.jpg?t=1617198526" /><br>The desert is filled with interesting locations to discover including oasis, bedouin camps, villages, military bases, air fields, oil wells, ancient ruins, Caravans, Wheat Fields, Palm Farms and many others.<h2 class="bb_tag"><strong>SCOUTING: </strong></h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/falcon.jpg?t=1617198526" /><br>Use a falcon, scope or binoculars to scout and tag enemies and resources.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/Header-Technology.png?t=1617198526" /><h2 class="bb_tag"><strong>PHOTO MODE: </strong></h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/selfie.jpg?t=1617198526" /><br>You can pause the game at any point, move the camera around to frame your shot, change color filters, control camera depth of field and field of view and then capture that perfect shot that you can share on social media.<h2 class="bb_tag"><strong>ULTRA HIGH DEFINITION 4K SUPPORT: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/4k.jpg?t=1617198526" /><br>High resolution textures ensure a crisp look that is carried over when you play in 4K. The user interface will also scale accordingly to show in a proper and readable way.<h2 class="bb_tag"><strong>COMPLETE CONTROL: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/controller.png?t=1617198526" /><br><ul class="bb_ul"><li>Rebindable Keys and Full Controller Support: Switch on the fly between Mouse/Keyboard, Xbox One Controller or Playstation 4 Controller at any time.<br></li><li>Fully Scalable: Choose from several quality presets or manually customize every single parameter to get the desired quality/performance combination you are after.<br></li><li>Customizable HUD: Control wither to show or hide any HUD element such as: Blood, Detection Indicators, FOV, Health Bars, Item Icons, Camera Shake, Screen Overlays, Compass Distances, Distance Units and Temprature Units. Or you can disable the HUD completely.</li></ul><h2 class="bb_tag"><strong>NEXT-GENERATION RENDERING: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/tech.jpg?t=1617198526" /><br><ul class="bb_ul"><li>Lighting: Fully dynamic lighting with Realtime Global Illumination (Future Alpha) and color bleeding.<br></li><li>Rendering and Shading: AAA quality Physically Based Rendering to give all objects a realistic look throughout any time of day. Dedicated shading for Cloth, Skin, and Fur. Snow, Water and Dirt accumulation on terrain and objects. Parallax Occlusion Mapping on terrain gives it that extra depth.<br></li><li>Cinematic Post Processing: Film Quality post processing effects including Color Grading, Tone Mapping, Eye Adaptation, Sun shafts, Ambient Occlusion, Grain, Vignetting, Chromatic Abberation, Motion Blur and Adaptive Depth of Field. Every single one of those effects can be turned on or off according to your liking.<br></li><li>Film Style Anti Aliasing: Temporal Anti Aliasing that prevents flickering while removing jagged edges. You also have the option of using FXAA, SMAA or disabling anti aliasing altogether.<br></li><li>Animation: Character animations are based on motion capture data of a real actor and then enhanced with Inverse Kinematics to achieve greater integration with the world like foot placement on uneven terrain.</li></ul><h2 class="bb_tag"><strong>FULL INTERACTIVITY: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/palms.jpg?t=1617198526" /><br><ul class="bb_ul"><li><strong>Adaptive Soundtrack:</strong> Music track that adapts to what you are doing in the game and changes the mood and intensity accordingly.<br></li><li>Destruction: Objects made of wood and clay will break and shatter based on the force you hit them with. In addition to fracture being fully dynamic (not prefractured) you can further destroy the broken pieces into even smaller chunks.<br></li><li>Touch Bending: Walking through ground level plants (Like short Palm Trees) will cause their leaves to dynamically bend and react to your physical presence.<br></li><li>Water Simulation: Walking through the water surfaces will cause ripples and waves based on the type of movement you did. Water is rendered with screen space reflections, specular highlights, refraction, foam and white caps coupled with caustics for greater realism.<br></li><li>Dynamic Fire Propagation (Future Alpha): Throwing a fire torch or a lantern on flammable surfaces like cloth and wood will cause fire to spread dynamically in the area.<br></li><li>Interactive Cloth (Future Alpha): Cloth react to wind speed but in addition it will also be affect by physical objects or characters passing through them.<br></li><li>Metal Deformation: Like in real life, metal will bend and deform if gets shot or if it collides with other heavier objects.</li></ul><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/Header-Coming.png?t=1617198526" /><h2 class="bb_tag"><strong>SEA LIFE: </strong> </h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/sea.jpg?t=1617198526" /><br>Build your own ship and navigate to explore different islands filled with treasures, go fishing, or pearl diving in the sea.<h2 class="bb_tag"><strong>PROCEDURAL TOMBS AND CAVE NETWORKS: </strong></h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/HeadingDivider.png?t=1617198526" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/545050/extras/tombs.jpg?t=1617198526" /><br>Equip your torch, lantern and courage and explore tombs and cave networks that are filled with traps, loot, treasures and dangers.
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

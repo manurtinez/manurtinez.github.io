@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Babysitter Bloodbath</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Babysitter Bloodbath</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-24/7/2022">24/7/2022</a> 23:52:20</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-2/9/2022">2/9/2022</a> 18:13:41</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-30/12/2016">30/12/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Puppet Combo">Puppet Combo</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Puppet Combo">Puppet Combo</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://puppetcombo.itch.io/babysitter-bloodbath" target="_blank">Página de la tienda</a><br/><a href="http://pcgamingwiki.com/w/index.php?search=Babysitter Bloodbath" target="_blank">PCGamingWiki</a><br/><a href="http://pigfarmergames.com" target="_blank">Homepage</a><br/><a href="http://puppetcombo.com" target="_blank">Homepage</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-3D">3D</a><br/><a href="#quicklink-80s">80s</a><br/><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Gore">Gore</a><br/><a href="#quicklink-grindhouse">grindhouse</a><br/><a href="#quicklink-Horror">Horror</a><br/><a href="#quicklink-PSX (PlayStation)">PSX (PlayStation)</a><br/><a href="#quicklink-Retro">Retro</a><br/><a href="#quicklink-Slasher">Slasher</a><br/><a href="#quicklink-Survival Horror">Survival Horror</a><br/><a href="#quicklink-vhs">vhs</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<p><img src="https://img.itch.zone/aW1nLzg4OTk1OC5qcGc=/original/iAbRUv.jpg" style="color: inherit; font-size: inherit" loading="lazy"><br></p>
+<h4>"They locked him up and threw away the key!"</h4>
+<p>For 22 years Neokalus Burr has stared at an empty wall in the bowels of Monroe State Mental Hospital. But tonight he's ESCAPED to continue his BLOOD SOAKED murder rampage! It's also your first night babysitting</p>
+<ul><li><strong>Take care of young Billy while his parents enjoy a night on the town</strong></li><li><strong>Talk to your friends on the phone</strong></li><li><strong>Invite a cute guy over to watch scary movies</strong></li><li><strong>Be stalked, chased and murdered by the madman from your nightmares</strong></li><li><strong>Use your wits and whatever tools and weapons are available</strong></li><li><strong>Do whatever it takes to survive the night!</strong></li></ul>
+<p><br></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sbt8CTt5S7U" frameborder="0" allowfullscreen="" style="color: inherit"></iframe>
+<p>
+Babysitter Bloodbath logo and cover painting by <a href="http://markusbuelow.blogspot.com/" referrerpolicy="origin" rel="nofollow noopener">Markus Bülow</a>. Check out his horror <a href="http://villains-preferred.blogspot.de/" referrerpolicy="origin" rel="nofollow noopener">blog here</a>!</p>
+<p>
+*Note1 - On Windows 10 the game may need DirectPlay to function.&nbsp;Try this: <a href="https://www.youtube.com/watch?v=6XYyGB-Tn3g" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://www.youtube.com/watch?v=6XYyGB-Tn3g</a>
+</p>
+<p>
+*Note2 - Babysitter Bloodbath should be played in 4:3 resolution (with black bars on the sides of a 16:9 monitor). Playing in widescreen will make it look stretched. For best results, manually adjust your monitor resolution to 1024x768 and adjust the Scaling Mode on your video card. Here's some more info <a href="http://forums.steampowered.com/forums/showthread.php?t=2792599" referrerpolicy="origin" rel="nofollow noopener">Running 4:3 games on a 16:9 monitor</a>
+</p>
+<h3>CD-ROM</h3>
+<p>The Babysitter Bloodbath disc is here! PC-001</p>
+<ul><li><strong>Limited run. Only 100 copies made</strong></li><li><strong>Extra features on the disc, including the soundtrack</strong></li><li><strong>10 page manual</strong></li><li><strong>Brand new and shrink wrapped</strong></li></ul>
+<p><strong><a href="https://puppetcombostore.com/products/babysitter-bloodbath-cd-rom" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Pick it up at the Puppet Combo store</a></strong></p>
+<figure><a href="https://puppetcombo.com/store/product/babysitter-bloodbath-cd-rom/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><img src="https://img.itch.zone/aW1nLzE1NjU2MTEuanBn/original/%2B44V%2F%2F.jpg" alt="Babysitter Bloodbath cd-rom" title="Babysitter Bloodbath cd-rom" loading="lazy"></a></figure>
+<h3>Patreon</h3>
+<p><strong>Join <a href="https://www.patreon.com/bePatron?u=4340736" referrerpolicy="origin" rel="nofollow noopener">Patreon</a> for access to my latest experiments in TERROR! Shock and panic await you in my newest games <a href="https://www.patreon.com/bePatron?u=4340736" referrerpolicy="origin" rel="nofollow noopener">The Night Ripper</a> &amp; <a href="https://www.patreon.com/bePatron?u=4340736" referrerpolicy="origin" rel="nofollow noopener">Buzz-Saw Blood House</a>.</strong></p>
+<figure><a href="https://www.patreon.com/bePatron?u=4340736" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><img src="https://img.itch.zone/aW1nLzkwNjcyNi5qcGc=/original/W10ECA.jpg" loading="lazy"></a></figure>
+<p><br><br></p>
+<h3>SHIRTS</h3>
+<p><strong>Be the DEATH of the party with a <a href="https://puppetcombo.com/store/product-category/titles/babysitter-bloodbath/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Puppet Combo t-shirt</a>.</strong></p>
+<h3><a href="https://puppetcombo.com/store/product-category/titles/babysitter-bloodbath/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><img src="https://img.itch.zone/aW1nLzExMjg5MDkuanBn/original/slketD.jpg" loading="lazy"></a></h3>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

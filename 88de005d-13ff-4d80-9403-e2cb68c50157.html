@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>TASTEE: Lethal Tactics</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> TASTEE: Lethal Tactics</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:24</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-11/10/2022">11/10/2022</a> 22:31:38</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-10/5/2016">10/5/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-75">75</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-72">72</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Skybox Labs">Skybox Labs</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Skybox Labs">Skybox Labs</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Pvp">Pvp</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/365190" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/365190/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/365190/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=365190" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/365190" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=365190" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/365190/achievements" target="_blank">Logros</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-No Cloud Saves">No Cloud Saves</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<strong>** Regular community tournaments (with awesome prizes!) are scheduled throughout 2017! **</strong><br><br><strong><i>This is</i></strong> TASTEE: we do take out.<br><br><strong><i>You are</i></strong> the director, you will coordinate a master plan using every tool at your disposal. Off the books, unsanctioned and highly illegal, you’ll be doing the dirty work the government can’t.<br><br><strong><i>They are</i></strong> elite, elusive, and deliciously dangerous. Independents and rogues, these mercs do not play well with others and we’re going to cram them all into your rundown diner: TASTEE. They’re an unruly powder keg waiting for a spark...but fortunately most of these guys like explosions. This is your team. <br><br><strong><i>Your job</i></strong> is to recruit these hired guns and form the TASTEE team; use them to orchestrate missions to take down the Cartel. Misfits and outcasts, each merc has refined their own personal MO when it comes to death and destruction. Their unique set of skills is exactly what you’ll need to steal guns, interrupt supply lines, save hostages, formulate traps, and execute epic gunfights on your mission to take down The Cowboy - the big boss responsible for a global crime epidemic. Lethal tactics have been authorized… Good luck.<br><br><u><strong>FEATURE SET </strong></u><br><br><strong>Single Player Mission Mode:</strong><br><ul class="bb_ul"><li>30 Missions across 10 locations. <br></li><li>Recruit mercs, each with their own unique skillset.<br></li><li>Mission Leaderboards - Replay missions, best your own scores and top others’ to climb the global leaderboards.</li></ul><br><strong>Regular Community Tournaments Scheduled Throughout 2017:</strong><br><ul class="bb_ul"><li>Join the TASTEE community and participate in our regular events and tournaments.<br></li><li>Win TASTEE swag like our t-shirts or concept art prints - or emerge on top and take home the coveted, 3D-printed, TASTEE trophy!</li></ul><br><strong>A Diverse Roster of 12 Mercenaries, Each with Their Own Special Abilities and Weapons:</strong><br><ul class="bb_ul"><li>Each character has their own particular skill set, their expertise ranging from clever gadgets to lethal combat abilities.</li></ul><ul class="bb_ul"><li>4 distinct character classes: Gunmen, Snipers, Shotgunners, Bombers.<br></li><li>Mix and match your mercenaries to create the optimal squad for each situation.<br></li><li>Coordinate attacks by pairing units with complementary skills and abilities. For example, Linus breaks through walls, attacking from unexpected locations and opening paths for teammates; pair his skills with Bodark's swift disarming shot to take enemies by surprise and leave them vulnerable.</li></ul> <br><strong>10 Unique, Randomized Tactical Maps: </strong><br><ul class="bb_ul"><li>Rich, detailed locations highlight dramatic cat-and-mouse armed encounters. <br></li><li>Destructible environmental objects - Destroy doors and cover objects to alter the playing field. <br></li><li>Randomized Maps Elements - Destructible object placement is randomized on all maps, creating different pathways and strategy possibilities for each match. <br></li><li>Learn the maps to formulate strategies - Find ideal sniper locations, quick getaways and lanes to lead your opponent into an ambush.</li></ul><br><strong>Competitive Online Multiplayer Play: </strong><br><ul class="bb_ul"><li>ELO-ratings based global leaderboards - Defeat other players in the community to move up the rankings and become #1!<br></li><li>Asynchronous Online Matches - Play Head-to-Head matches asynchronously - submit your turns at your own pace. E-mail notifications inform you when it's your turn and when someone has challenged you to a match.<br></li><li>Cage Matches - Play Head-to-Head matches live - submit your turns before the timer runs out.  </li></ul><br><strong>Daily Mission - Single Player Challenge:</strong><br><ul class="bb_ul"><li>A new single player mission every day!<br></li><li>The squad configuration, map, rule set, and enemies are all randomized each day - It'll be a surprise every time!<br></li><li>You get one try per day - pass or fail, you get a score that is registered to the daily leaderboard.</li></ul><br><strong>Share your Best Match Replays: </strong><br><ul class="bb_ul"><li>Just won an incredible match? Share the replay with other Lethal Tactics players!</li></ul><br><strong>Practice Mode: </strong><br><ul class="bb_ul"><li>Play full matches versus AI. <br></li><li>Practice your tactics and test unit combinations. </li></ul><br><strong>Steam Achievements: </strong><br><ul class="bb_ul"><li>Play all modes to earn them all!</li></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

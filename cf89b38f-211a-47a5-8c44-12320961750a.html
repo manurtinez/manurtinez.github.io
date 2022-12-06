@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Killing Room</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Killing Room</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:22</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-11/10/2022">11/10/2022</a> 22:47:59</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-20/10/2016">20/10/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-67">67</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-65">65</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Alda Games">Alda Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Alda Games">Alda Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Captions Available">Captions Available</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Stats">Stats</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/407560" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/407560/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/407560/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=407560" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/407560" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=407560" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/407560/achievements" target="_blank">Logros</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-Unity">Unity</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<img src="https://cdn.akamai.steamstatic.com/steam/apps/407560/extras/action.gif.png?t=1600166672" /><br>Killing Room is a first person shooter mixed with a rogue-like RPG and reality-show parody. You are an (un)lucky contestant in Killing Room, a popular reality-show in a decadent 22nd century. You know that there is only glory or death – with death winning in 99 out of 100 cases. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/407560/extras/WhatIsKillingRoom_NoGlow.png?t=1600166672" /><br><ul class="bb_ul"><li><h2 class="bb_tag">First person shooter</h2>Killing Room offers classical first person gunplay with many weapons, even melee ones like Scythe or the  audience’s favorite flyswatter.</li></ul><ul class="bb_ul"><li><h2 class="bb_tag">Rogue-like</h2>There is Permanent death, random generation and very high difficulty in Killing Room so as to ensure that your skills will be properly tested and that every wrong move can cause you a lot of trouble.</li></ul><ul class="bb_ul"><li><h2 class="bb_tag">Reality-show parody</h2> We love the  idea behind the Smash TV game of the  Running Man movie/book. The Killing Room therefore aims for this. Your character is in a bad situation but he can become ridiculously rich in few hours. However, everyone will do everything possible to stop him. Killing Room is a cruel reality-show, one full of dark humor and cynicism.</li></ul><ul class="bb_ul"><li><h2 class="bb_tag">Online voting for streamers and viewers</h2> You can let a  real online audience decide how you will be rewarded or punished during your playthrough. Just stream the game and share the  provided URL with your followers. This is a completely new way of interaction between a player and his/her audience. We made sure that it brings a great amount of fun for both sides while it is absolutely optional. Playing without a real online audience is still a complete experience.</li></ul><ul class="bb_ul"><li><h2 class="bb_tag">Popularity-driven</h2>You will be closely watched not only by an online audience. Your actions will be evaluated by an AI audience as well. If you are boring, your popularity will drop. But if you entertain crowds, you can become their hero. Being popular is everything when it comes to TV shows! Literally, it is everything, because if you annoy the audience, they will make you regret the moment you ever entered Killing Room.</li></ul><ul class="bb_ul"><li><h2 class="bb_tag">RPG</h2>Your character is defined by various attributes – Stamina, Health, Speed, Defense, Accuracy, etc.   You can invest into boosting these attributes to significantly help you in your desperate effort. But you can also depend on items which can boost your attributes and even give you special effects and bonuses beyond the basic RPG system. There are double-jumps, invulnerability to traps, various maps of Killing Room sets, and tons of other useful things. But if you are a bad boy or girl with low popularity or begrudging online viewers, you can also get trouble items which will cause you…well, trouble...from hardly noticeable penalties to your attributes to serious diseases, the inability to run or losing an eye.</li></ul><ul class="bb_ul"><li><h2 class="bb_tag">Diverse and rich in content and gameplay</h2> Guns and melee weapons, 3 different 'worlds' with unique enemies, boss fights, more than 100 unique items, points of interest with rewards and many more awaits you in Killing Room. Also, while our show permanently tries to kill its participants, it is not only about shooting. We have prepared many interesting traps, puzzles and other elements to make sure that our show is in no way boring.</li></ul><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/407560/extras/FeaturesNoGlow.png?t=1600166672" /><br><ul class="bb_ul"><li>8 random generated levels<br></li><li>8 boss creatures with unique gameplay and intro animations<br></li><li>Online voting for better interaction between streamers and their audience<br></li><li>15+ weapons<br></li><li>25+ enemy types<br></li><li>150+ unique  Items<br></li><li>Fighting, puzzle and trap rooms</li></ul><h2 class="bb_tag">Free content patches</h2>We are going to support Killing Room after release not only by fixing bugs but also with free content updates bringing you more Items, Weapons, Enemies and room variations.
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

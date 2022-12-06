@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Zoom Player Steam Edition</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Zoom Player Steam Edition</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:13</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-13/10/2022">13/10/2022</a> 21:55:14</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-66">66</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Audio Production">Audio Production</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Utilities">Utilities</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Video Production">Video Production</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Inmatrix LTD">Inmatrix LTD</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Inmatrix LTD">Inmatrix LTD</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/269550" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/269550/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/269550/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=269550" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/269550" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=269550" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					Zoom Player is a Powerful, Flexible and Highly Customizable Media Player and Media Center software for the Windows PC platform. Using our Smart Play technology, more media formats play with less hassle, improved stability and greater performance. Zoom Player's fullscreen navigation interface is based on a simple 5-Key system (up/down/left/right/select). The 5-key system is suitable for easy access and navigation by novices and experts alike.<h2 class="bb_tag">Dedicated support staff &amp; documentation</h2>With Zoom Player, you are not only getting a professional quality software, but also tech support from fans, QA personal and access to the development and art team.<br><br>To top it off, Zoom Player's documentation is unparallelled in scope, every feature is explained in great detail, the vast number of customization features are easily searchable through the options dialog search feature and selected features are shown &amp; automatically highlighted.<h2 class="bb_tag">Main Features</h2><ul class="bb_ul"><li>A polished user interface (<a href="https://steamcommunity.com/linkfilter/?url=http://www.inmatrix.com/zplayer/screens/index_skinnedui.shtml" target="_blank" rel=" noopener"  >check the screenshots!</a>) with no bloat!<br></li><li>The User-Interface is customizable to the extreme with <a href="https://steamcommunity.com/linkfilter/?url=http://inmatrix.com/zplayer/options.shtml" target="_blank" rel=" noopener"  >hundreds of settings</a> that control every aspect of the user experience.<br></li><li>Use the XBOX 360 controller (or compatible devices) as a remote control with custom functions assignable to buttons and thumb sticks.<br></li><li>Over <a href="https://steamcommunity.com/linkfilter/?url=http://inmatrix.com/zplayer/highlights/zpfunctions.shtml" target="_blank" rel=" noopener"  >300 functions,</a> assignable to keyboard keys, mouse buttons, remote control buttons or controller buttons and thumb sticks.<br></li><li>Hardware accelerated video Decoding &amp; DeInterlacing (DXVA, CUDA, QuickSync).<br></li><li>Hardware, GPU based high-quality image upscaling algorithms (Bicubic, Lanczos, Jinc), maxing out high-end gaming cards for best-in-class video image quality.<br></li><li>Digital Audio output over S/PDIF &amp; HDMI Bit-Streaming to external receivers/amps.<br></li><li>An Install Center application which makes life easy by keeping decoding components consistently up to date (optional).<br></li><li>A <a href="https://steamcommunity.com/linkfilter/?url=http://www.inmatrix.com/zplayer/screens/index_nav.shtml" target="_blank" rel=" noopener"  >fullscreen navigation interface</a>, easily upgrading the PC into a full Home Theater experience or for use on touch-screen tablets.<br></li><li>A Command &amp; Control API that works over TCP/IP (the internet), COM or WinAPI, providing access to custom mods you can create yourself.<br></li><li>Decrypted Blu-Ray Movie playback with Subtitle support.<br></li><li>Video Wall (Span a single video across multiple monitors).<br></li><li>Scene-Cut (Dynamic, Virtual Audio/Video editing).<br></li><li>Non-Linear 16:9 (widescreen) / 4:3 (fullscreen) video scaling.<br></li><li>Video Orbiting (Prevents screen-burns by slowly moving the video image every few seconds).<br></li><li>HTML, Flash and QuickTime Interactivity (Browse content from within Zoom Player, bypassing standard media controls).<br></li><li>Create custom Mobile-Phone RingTones from playing media.<br></li><li>GuardDog (Automatically restart Zoom Player if the player becomes unresponsive).<br></li><li>All popular formats are supported : H.264, XVID, DIVX, DVD, Blu-Ray, FLV, WMV, QuickTime, MPEG 1/2/4, MP3, AAC, DTS, Dolby Digital, FLAC and many more including the recent ones such as Dolby-TrueHD, WebM, OPUS, etc...<br></li><li>Click <a href="https://steamcommunity.com/linkfilter/?url=http://inmatrix.com/zplayer/pro/versions_home8.shtml" target="_blank" rel=" noopener"  >here</a> for the complete feature list.</li></ul><br>Note: The latest version of DirectX is recommended but not mandatory. We suspect most of you have updated already and we simply did not want to burden you with a bloated download. If you feel it is finally time to upgrade to the latest DirectX,  <a href="https://steamcommunity.com/linkfilter/?url=https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;amp;id=35" target="_blank" rel=" noopener"  >click here</a>.
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Machines At War 3</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Machines At War 3</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:16</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-13/10/2022">13/10/2022</a> 21:28:47</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-2/10/2013">2/10/2013</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-71">71</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Isotope 244 LLC">Isotope 244 LLC</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Isotope 244 LLC">Isotope 244 LLC</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Pvp">Pvp</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Shared/Split Screen Pvp">Shared/Split Screen Pvp</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Stats">Stats</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/303860" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/303860/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/303860/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=303860" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/303860" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=303860" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/303860/achievements" target="_blank">Logros</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-No Cloud Saves">No Cloud Saves</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					Real time strategy game featuring over 130 different types of units and technologies, 21 campaign missions with characters and an intriguing story, unlimited random map skirmishes with many customizable settings, network multiplayer to challenge your friends, and so much more in this RTS!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/303860/extras/imgDesc.png?t=1508766496" /><h2 class="bb_tag">Features</h2><br><ul class="bb_ul"><li>Build over 130 different types of units and technologies<br></li><li>Rescue the Omicron Initiative in 21 missions<br></li><li>Command and conquer massive 5,000 unit battles<br></li><li>Play unlimited random map skirmishes<br></li><li>Conquer four friends in online multiplayer combat<br></li><li>Dominate with seven awesome RTS mega units<br></li><li>Deploy a full arsenal of infantry, aircraft, naval, and ground forces<br></li><li>Enjoy rich environments with ambient objects and weather</li></ul><h2 class="bb_tag">The story:</h2><br>You investigate a secluded military lab and find something horribly wrong!  All of the scientists are missing and the facility is ransacked.  Years of research and top secret classified experiments are no where to be found.<br><br>The missing scientists, known as the Omicron Initiative, are responsible for developing new technologies.  The only clue to their disappearance is a mysterious text message reading &quot;we were forced to do it&quot;.  The team's disappearance threatens the secrecy of it's research, which could potentially put your country into a chaotic panic.  Now there's only one person who can rescue the Omicron Initiative and protect its secret technology from falling into the wrong hands.<br><br>In 21 real time strategy missions you'll race across the world to find out who, or what, is responsible for the team's disappearance.  You'll battle with over 130 different types of RTS units ranging from infantry and ships to giant modern mega units.<br><br>After honing your skills in the campaign, fire up a random map and experience insane 5,000 unit real time strategy battles!  Choose your nation and test your mettle in online multiplayer or conquer some AI opponents offline.  Many adjustable options ensure every game is unique.  Want to play with only ground units?  Make the victory condition the death of a specific unit?  The options are limitless in this real time strategy game!<br><br>It's time to arm up and get in the war!<h2 class="bb_tag">Behind the Game:</h2><br>Hello, my name is James, I'm an indie developer and programmed 100% of Machines at War 3 over the last two and a half years!  It was quite the undertaking and I almost gave up several times, but through bad times and good, I'm excited this real time strategy game is done!  I hope you enjoy it and if so please let me know, sometimes when things are tough an email or review from a customer really helps.  Game on!<h2 class="bb_tag">Even more reviews!</h2><br>&quot;Easily one of the smoothest playing RTS experiences&quot; <br>148Apps<br><br>&quot;This game is epic.&quot;<br>iDownloadBlog  <br><br>&quot;The number of units that can be created is staggering&quot;<br>Armchair General<br><br>&quot;An ultra-solid strategy game full of interesting features, large maps, and a wide array of gameplay situations.&quot;<br>Gamers Critic<br><br>&quot;An assault helicopter above, exploding, and a little trooper in a teal jumpsuit parachuting out.  Maybe a nice visual touch in another game.  Here?  Well, shucks to that 'copter.  You've got another pair of boots on the ground and a forward position to secure.&quot;<br>&quot;This control scheme really shines&quot;<br>&quot;Normally you can't access beard tech like that until the end of the the tree.&quot;<br>PocketTactics<br><br>&quot;A robust selection of gameplay modes and units.&quot; <br>&quot;Machines at War 3 is all about the action, and the game coats it in an engaging 21-mission campaign with unique objectives.&quot;<br>Mac|Life<br><br>&quot;Every fibre screams homage to the retro RTS games we grew up on&quot; <br>Gamegrin<br><br>&quot;Machines at War 3 has a variety unmatched by other RTS titles.&quot;<br>Nizulo<br><br>&quot;The randomly generated maps mean that the experience is new each and every time.&quot;<br>Daily Joypad
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

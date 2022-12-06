@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>SONAR Home Studio</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> SONAR Home Studio</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:26</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-11/10/2022">11/10/2022</a> 22:16:36</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-55">55</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Audio Production">Audio Production</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Cakewalk">Cakewalk</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Cakewalk">Cakewalk</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/543510" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/543510/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/543510/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=543510" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/543510" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=543510" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					Transform any Windows 7, 8, or 10 computer into your own personal music studio with all the tools, loops, instruments, and effects you need to create, edit, and mix great music. Packed with tools and features used by the professionals, <strong>SONAR Home Studio</strong> is an ideal platform to get started in music production. As part of <a href="http://store.steampowered.com/app/380080/" target="_blank" rel=""  >SONAR</a>’s lineage—the program that scored Call of Duty, MI:5 Rogue Nation, and powers countless hits—<strong>SONAR Home Studio</strong> benefits from the SONAR family’s years of refinement. When you’re ready to create music—not just listen to it—<strong>SONAR Home Studio</strong> is ready for you.<br><br><strong>SONAR Home Studio</strong> does it all: Rock out with the TH3 Cakewalk virtual guitar amps, craft ground-breaking beats with the Step Sequencer, export samples to RPG Maker, and much more. And when you’re ready for a more full features application, <strong>SONAR Home Studio</strong> projects are compatible with all professional editions of <a href="http://store.steampowered.com/app/380080/" target="_blank" rel=""  >SONAR</a>.<h2 class="bb_tag">Highlights:</h2><ul class="bb_ul"><li> Surface Pen, Surface Dial, and improved Touch Navigation powered by Windows 10.<br><br></li><li> Get ready to go wireless with support for Bluetooth MIDI Keyboards in addition to your speakers and headphones.<br><br></li><li> Use as many plug-ins as your heart desires in projects with no limits. Seriously.<br><br></li><li> Improved Built-in Audio Support: With new WASAPI drivers, SONAR now delivers low-latency performance with Windows Desktops, laptops and tablets.<br><br></li><li> A brand new Audio Loop Library from Big Fish Audio! </li></ul><h2 class="bb_tag">Key Features</h2><ul class="bb_ul"><li> Includes 700 loops, 400 One Shots and FX for music creation<br></li><li> Up to 64 audio tracks supporting large projects<br></li><li> Overloud TH3 Cakewalk Guitar Amp simulator with world-class guitar tones<br></li><li> Built-in Browser to easily drag and drop loops, instruments, effects, and track templates <br></li><li> Share your music on SoundCloud<br></li><li> Optimized for Windows 10, enjoy fast and responsive audio I/O, and robust performance<br></li><li> An intuitive guided setup on first launch to help get you get started immediately<br></li><li> Help Module: A “hovering” system to learn/command the program fast!<br></li><li> A great assortment of hi-quality effect plug-ins including Reverb, Delay, Chorus, Compressor/Gate, Filters, Phaser, EQ, Modulation and more<br></li><li> Studio Instruments Suite features four different instruments that create the perfect band: Bass, Electric Piano, Drums, and Strings<br></li><li> Rock-solid support for USB microphones and the Rocksmith Real Tone cable <br></li><li> VST2 and VST3 plug-in support – compatible with thousands of effects and instruments by the world’s leading developers <br></li><li> 8 Style Dial FX modules that give you simple yet professional mix results with ease<br></li><li> <a href="http://store.steampowered.com/app/353041/" target="_blank" rel=""  >Rapture Session</a> sample player comes with 450 sounds ranging from soaring synth lead and devastating synth basses to thought provoking atmospheric pads and cinematic strings<br></li><li> Integration with LANDR online mastering – the easiest way to finalize your songs before sharing and publishing<br></li><li> An onboard “Curve EQ” for sophisticated tone shaping through equalization<br></li><li> Dedicated Comping Tool lets you consolidate the best sections from multiple takes into a single killer track<br></li><li> The Start Screen organizes all your projects with images of each session and provides quick tips to get you inspired<br></li><li> The SONAR Smart Tool gives you intuitive and powerful editing capabilities<br></li><li> Deep MIDI and audio editing tools let you tweak to perfection<br></li><li> Mix like a pro with a full mixing console that includes built-in EQ+ templates<br></li><li> Supports REX and “ACIDized” loop formats<br></li><li> 8 languages French, German, Spanish, Italian, Brazilian/Portuguese, Japanese, Chinese, and Russian</li></ul><h2 class="bb_tag">SONAR Home Studio Plugin Suite:</h2>			<br><ul class="bb_ul"><li> Sonitus Compressor			<br></li><li> Sonitus Delay			<br></li><li> Sonitus Equalizer			<br></li><li> Sonitus Gate			<br></li><li> Sonitus Modulator			<br></li><li> Sonitus Multiband			<br></li><li> Sonitus Phase			<br></li><li> Sonitus Reverb			<br></li><li> Sonitus Surround<br></li><li> Sonitus Surround Compressor						<br></li><li> Sonitus Wahwah<br></li><li> AliasFactor			<br></li><li> Chorus/Flanger			<br></li><li> Classic Phaser			<br></li><li> Compressor/Gate			<br></li><li> HF Exciter			<br></li><li> Modfilter			<br></li><li> Para-Q			<br></li><li> Tempo Delay<br></li><li> TH3 Cakewalk Edition<br></li><li> 8 One Knob StyleDials</li></ul><h2 class="bb_tag">SONAR Home Studio Virtual Synths:</h2>			<br><ul class="bb_ul"><li> <a href="http://store.steampowered.com/app/353041/" target="_blank" rel=""  >Rapture Session</a><br></li><li> Studio Instrument Bass<br></li><li> Studio Instrument Drums<br></li><li> Studio Instruments Electric Piano	<br></li><li> Studio Instrument Strings<br></li><li> Cakewalk TTS-1</li></ul><h2 class="bb_tag">Supported Formats:</h2>	<ul class="bb_ul"><li> Wave and Broadcast Wave (time stamped)			<br></li><li> WMA, WAV, W64, ASF			<br></li><li> AIFF, CAF, SD2, RAW			<br></li><li> FLAC				<br></li><li> OGG, RF64			<br></li><li> MP3		<br></li><li> WAV RIFF, ACID, Rex, Rex2, Rex64									<br></li><li> Dithering options on export			<br></li><li> SoundCloud integration			<br></li><li> MusicXML Export			<br></li><li> 32/64-Bit VST3 support			<br></li><li> 32/64-bit VST2, VSTi and DXi support			<br></li><li> Bit Bridge (allows 32-bit plug-ins in 64-bit mixing environment)			<br></li><li> PNG Track Icon support</li></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

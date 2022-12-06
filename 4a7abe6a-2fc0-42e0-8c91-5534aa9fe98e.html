@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>foreverloops</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> foreverloops</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:27</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-11/10/2022">11/10/2022</a> 22:04:30</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-67">67</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Audio Production">Audio Production</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Education">Education</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Utilities">Utilities</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Video Production">Video Production</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-foreverloops">foreverloops</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-foreverloops">foreverloops</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/725610" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/725610/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/725610/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=725610" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/725610" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=725610" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					Easy-to-use and beginner friendly audio / video authoring tool, based on playful interaction principles.<br>Experiment with all kinds of audio–visual material, including your own sample library, and use unprecedented possibilities for music-making and performances.<br>Evolve simple arrangements to awe-inspiring media machineries that can be tweaked and customized in real-time.<h2 class="bb_tag">Versions:</h2><table><tr>	<th></th>	<th>    foreverloops BEATS    </th>	<th>   foreverloops LONGPLAY  </th>	<th>    foreverloops STUDIO   </th></tr><tr>	<th></th>	<td>      not upgradeable 	  </td>	<td>    upgradable to STUDIO  </td>	<td>     DLC for LONGPLAY     </td></tr><tr>	<td>unlimited tracks </td>	<td>                •</td>	<td>                •</td>	<td>                •</td></tr><tr>	<td>import audio, video, images </td>	<td>                •</td>	<td>                •</td>	<td>                •</td></tr><tr>	<td>drive gears </td>	<td>                •</td>	<td>                •</td>	<td>                •</td></tr><tr>	<td>sequencer gears </td>	<td>                •</td>	<td>                •</td>	<td>                •</td></tr><tr>	<td>scratch gears </td>	<td></td>	<td>                •</td>	<td>                •</td></tr><tr>	<td>MIDI gears </td>	<td></td>	<td>                •</td>	<td>                •</td></tr><tr>	<td>FX gears </td>	<td></td>	<td>                •</td>	<td>                •</td></tr><tr>	<td>included samples</td>	<td>                270</td>	<td>                339</td>	<td>                386</td></tr><tr>	<td>on-screen keyboard </td>	<td></td>	<td>                •</td>	<td>                •</td></tr><tr>	<td> Leibniz drives </td>	<td></td>	<td>                •</td>	<td>                •</td></tr><tr>	<td> ASIO support </td>	<td></td>	<td></td>	<td>                •</td></tr><tr>	<td> MIDI out </td>	<td></td>	<td></td>	<td>                •</td></tr><tr>	<td> Spout sender </td>	<td></td>	<td></td>	<td>                •</td></tr><tr>	<td> VST3 support </td>	<td></td>	<td></td>	<td>                •</td></tr><tr>	<td>included effects</td>	<td></td>	<td>                18	 </td>	<td>                18+13</td></tr></table><h2 class="bb_tag">Features:</h2><ul class="bb_ul"><li> amazingly intuitive interface<br>	<ul class="bb_ul">	<li> audio-visual programming<br>	</li><li> based on gear mechanics<br>		<ul class="bb_ul">		<li> group and relate tracks by forming gear trains<br>		</li><li> superb for<br>			<ul class="bb_ul">			<li> combining different bar measures<br>			</li><li> relating track playback speeds (transmission)<br>			</li><li> structuring<br>			</li><li> performing<br>			</li><li> a/v synchronization<br>			</li></ul>		</li></ul>	</li><li> supports polyrhythm and polymeter<br>	</li><li> avoids clutter by focusing on its core features and mechanics<br>	</li><li> implicit synchronization mechanisms<br>	</li><li> suitable for beginners - being able to read music is no requirement<br>	</li><li> five gear types for various tasks<br>		<ul class="bb_ul">		<li> drive gears to power gear trains with customizable speeds<br>		</li><li> sequencer gears to play audio, image and video samples<br>		</li><li> scratch gears to play longer voice or background samples or videos<br>		</li><li> MIDI gears for longer instrument tracks<br>		</li><li> fx gears for customizable audio effects<br>		</li></ul>	</li></ul></li><li> playful approach<br>	<ul class="bb_ul">	<li> real-time simulation<br>	</li><li> manifold performance capabilities<br>		<ul class="bb_ul">		<li> mute / unmute individual tracks, stacks and trains<br>		</li><li> set tracks, stacks and trains to solo mode<br>		</li><li> alter playback directions<br>		</li><li> enable / disable entire gear trains<br>		</li><li> manually drive the loops (scratching)<br>		</li><li> conveniently alter track speeds (gear transmission)<br>		</li><li> exchange events using the same samples on-the-fly<br>		</li><li> apply individual effects or effect chains<br>		</li></ul>	</li><li> use programmable logic (Leibniz wheels)	</li></ul></li><li> powerful sequencing capabilities<br>	<ul class="bb_ul">	<li> almost unlimited tracks<br>	</li><li> individually adjustable gear segments (~ bar measures)<br>	</li><li> different concurrent playback speeds, live and dynamic control<br>	</li><li> supports audio, video, and images<br>		<ul class="bb_ul">		<li> multiple audio file formats, both compressed and uncompressed<br>			<ul class="bb_ul">			<li> mp3, wav, flac, ogg, aiff, aif, wma, aac, m4a<br>			</li></ul>		</li><li> multiple image file formats<br>			<ul class="bb_ul">			<li> bmp, exif, gif, png, jpg, bpm<br>			</li></ul>		</li><li> multiple video file formats (that are imported as mjpeg files for fast frame-to-frame access)<br>			<ul class="bb_ul">			<li> mp4, flv, avi, mov, wmv, mpeg, mpg, 3gp, ogv, mkv, webm<br>			</li></ul>		</li><li> import your own library / recordings / …<br>		</li></ul>	</li><li> supports sf2 and sfz SoundFont formats<br>	</li><li> several audio effects<br>		<ul class="bb_ul">		<li> effects: volume rotate, echo, autowah, phaser, chorus, distortion, gargle<br>		</li><li> mastering: compressor, volume, reverb, parametric eq<br>		</li><li> filters: low-pass, high-pass, band-pass, band-stop, peak-eq, low-shelf, high-shelf<br>		</li></ul>	</li></ul></li><li> MIDI<br>	<ul class="bb_ul">	<li> SoundFont-based rendering<br>	</li><li> MIDI gear type with circular piano roll editor<br>	</li><li> transpose / quantize notes<br>	</li><li> customizable virtual keyboard<br>	</li><li> external MIDI input device support	</li></ul></li><li> export your results (audio-/video session recording, save as a bundle for sharing)<br></li><li> ships with a neat sample library (+300 samples)<br></li><li> lots of customizable shortcut keys<br></li><li> ui languages: English, French, German, Italian, Japanese, Korean, Portuguese, Russian, simplified Chinese</li></ul><br>foreverloops is promoted by aws impulse XL of BMWFW processed by aws.
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

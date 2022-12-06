@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>DROD: Gunthro and the Epic Blunder</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> DROD: Gunthro and the Epic Blunder</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>3d 8h 39m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-8/7/2022">8/7/2022</a> 20:25:04</TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-16/3/2022">16/3/2022</a> 22:03:25</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-17/3/2022">17/3/2022</a> 17:07:17</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Jugando">Jugando</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-23/9/2016">23/9/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-81">81</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Caravel Games">Caravel Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Caravel Games">Caravel Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Captions Available">Captions Available</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Includes Level Editor">Includes Level Editor</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/314330" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/314330/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/314330/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=314330" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/314330" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=314330" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/314330/achievements" target="_blank">Logros</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-[HLTB] 10 a 20 horas">[HLTB] 10 a 20 horas</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					&quot;Deadly Rooms of Death&quot; (DROD) is a turn-based strategy and tactics puzzle game series.  It is a 2D top-down puzzle adventure that focuses on pure gameplay mechanics, best described succinctly as &quot;chess in a Zelda-like environment.&quot;  The DROD series began over a decade ago and has enthralled thousands of players.<br><br>Swordplay and puzzles combine in this thinking man's dungeon crawl.  It's simple to learn, with just a handful of commands to master.  This game's rogue-like exterior belies clever puzzle design and unique play mechanics that provide amazing depth.  Each room is a hand-crafted puzzle that you solve by clearing out all the monsters with your Really Big Sword without letting any reach and kill you. Monster types each have their own AI, with deterministic movement patterns. Puzzle elements and terrain types help and hinder you in solving each puzzle. You start by learning basic mechanics and fighting techniques, and then the difficulty steadily ramps up as each room you face presents a fresh challenge with a logical solution. This game features a novel play style, with story- and puzzle-driven voiced dialogue delivered inline with hardcore puzzle solving that involves a mix of strategy, tactics, lateral thinking and linchpins. As developers, our goal is to present you with a novel experience where game mechanics are paramount. DROD will give you that &quot;just one more room&quot; feeling.<br><br>This game is the entry-point title in the ongoing DROD franchise. &quot;Gunthro&quot; is designed as an beginner-level offering to the DROD world, with both new players and veterans in mind. The level layout is has multiple hub areas to explore as you progress. The game starts easy, has a smooth learning curve and an integrated online hints system. You should be pleased by the puzzle designs that went into this game, making for a delightful blend of fun and challenge. A level editor and enthusiastic player community make this a game you can relish for years.<br><br><strong>Main game features</strong><br><br><ul class="bb_ul"><li> Over 300 puzzle rooms across 25 levels, each organized around different combinations of puzzle elements.<br></li><li> All-new enhanced version of the &quot;Gunthro and the Epic Blunder&quot; campaign!<br></li><li> Over 25,000 usermade rooms available for download!<br></li><li> Dozens of secret areas and optional extra challenge levels that lie in store for the more curious and adventuresome, uncovered in a variety of ways.<br></li><li> Varied elements and monster types like rock golems, giant serpents, wraithwings, and evil eyes, each with a distinctive AI behavior and requiring different strategies and tactics to conquer.<br></li><li> Hours of contextual music composed by synthpop artist Jon Sonnenberg of Travelogue.<br></li><li> New and upgraded in-game artwork, including three all-new terrain styles, with real-time lighting and a range of environmental effects.<br><br></li><li> Full-featured level/campaign editor, with custom scripting engine and modding capabilities<br></li><li> Active and friendly player community<br></li><li> Hi-score competition and hints system via our CaravelNet service</li></ul><br><strong>The story:</strong><br><br>In this game, Beethro Budkin recounts an epic tale of adventure to his precocious nephews about his grandfather, Gunthro Budkin, and his exploits in the dangerous nation of Rasarus. Gunthro is a third-generation smitemaster and a rather ugly man. Smitemasters are hard-bitten, muscled veteran dungeon exterminators that slay hideous beasties in dark places for a living. You know Gunthro will get the job done, and you'll happily pay him to clear your basement of giant man-eating dungeon roaches.<br><br>When the Rasarun king is slain by an officer of Tueno, Gunthro is recruited by Rasarus to defend his country and reclaim its honor. However, as Gunthro searches deeper, he will find that things are not quite as they seem.<br><br>Experience the unique turn-based puzzle dungeon adventure of DROD!<br><br><strong>Deluxe Bundle:</strong><br>Contains:<br><ul class="bb_ul"><li>DROD: Gunthro and the Epic Blunder<br></li><li><a href="http://store.steampowered.com/app/414250" target="_blank" rel="noreferrer"  >DROD OST: Deadly Music of Death, Volumes 1 and 2</a></li></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

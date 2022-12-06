@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Workers &amp; Resources: Soviet Republic</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Workers &amp; Resources: Soviet Republic</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:28</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-11/10/2022">11/10/2022</a> 22:02:04</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-15/3/2019">15/3/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-90">90</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Early Access">Early Access</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Simulation">Simulation</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-3Division">3Division</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-3Division">3Division</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Includes Level Editor">Includes Level Editor</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Workshop">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/784150" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/784150/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/784150/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=784150" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/784150" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=784150" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/784150/workshop/" target="_blank">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<ul class="bb_ul"><li><strong>Manage all aspects of your own republic</strong> with planned economy, including mining resources, manufacturing goods, construction, investments, and citizens too.<br></li><li><strong>Create your own industrial complexes</strong> with loading and unloading stations, storage, warehouses, and factories.<br></li><li><strong>Build the infrastructure and manage its traffic</strong>, including roads, railways, sidewalks, conveyors, wiring, and pipelines. Wisely place and connect factories, houses and warehouses, and make the most efficient connections.<br></li><li><strong>Plan and build the living areas</strong> with everything your citizens may need to live their happy life, such as playgrounds, cinema s, taverns, and shops.<br></li><li><strong>Send your citizens</strong> to the mine to get coal, iron and other natural resources; or send them to the fields to pick up the crops; or take them to factories to produce manufactured goods.<br></li><li><strong>Sell and purchase resources and goods</strong> from western countries or other soviet countries to get dollars or rubles and buy the products or resources you need ... or invest in new infrastructure or buildings.<br></li><li><strong>Enjoy authentic soviet buildings and vehicles</strong>, as well as realistic landscapes of the 60's to the 90's.<br></li><li><strong>Play the way you want!</strong> You can focus on getting natural resources or products and trade them for money; or you can build a self-sufficient republic; or you can just use the easy sandbox mode with unlimited money/resources and just enjoy building something live.<br></li><li><strong>Economic simulation.</strong> Prices of resources on the global market are changing over time as you play –one day you can sell or purchase steel for a $100 per ton, but in a few months the cost can rise to $200 or decrease to $50. The price of everything is connected to the cost of work and resources.<br></li><li><strong>Increasing difficulty.</strong>As prices change, the demands of the citizens also change, and you will need more resources to keep them happy and force them to work.</li></ul><h2 class="bb_tag">TRANSPORTATION</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/784150/extras/all_vehicles_to_storepage.png?t=1652709822" /><br>You have many options for how you will manage resources and goods transportation. If you get raw iron ore from a mine, you need to process it. Then you need to transport it somehow into a steel mill to produce steel. You can build the processing plant and steel mill near to the mine and transport it all by conveyors, or you can transport iron ore into a steel mill by train fora longer distance. <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/784150/extras/storepage_transportation.png?t=1652709822" /><br>It is up to you to decide from where the workers will go into the factories. You can create residential zones and transport workers by buses or trains to industrial areas. You can also build residential buildings near the factories so that workers will able to walk to the factory. But don't forget that a worker will need to purchase food and enjoy their free time, so again it is up to you to decide whether to build those facilities near their home or whether you will transport them somehow to shops or places to spend their free time.<h2 class="bb_tag">RESOURCES &amp; INDUSTRY</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/784150/extras/storepage_resources.png?t=1652709822" /><br>There are, right now, over 30 commodities you can mine, transport and manufacture. If you want to get clothes you will first need to get resources to create a fabric, then you will need a clothing factory where the clothes will be manufactured from this fabric. You can then transport the finished clothes into shops where your citizens can buy them.<br>Every commodity has a specific requirement,so if you would like to load oil into the tank train-car you will need a special pumping loading station. If you need to load gravel into a dumper truck you need a special loading station where the gravel comes from conveyors into the truck. Liquid resources like oil or fuel can be stored only in tanks, while resources like wood, steel, or prefabricated concrete panels can be stored outside in the open space. Using a crane for these will increase loading/unloading speed. Goods like clothes, food, etc. can be stored in warehouses.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/784150/extras/nuclear_wide.png?t=1652709822" /><h2 class="bb_tag">WORKERS AND THEIRS DEMANDS</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/784150/extras/storepage_citizens.png?t=1652709822" /><br>Every worker/citizen goes to work each day. If they work for you, they have demands. At the start of the game they are satisfied just with food, but as a time goes on they may have more demands like meat, clothes, alcohol or electronics. Also, to have happy workers you need places where they can spend their leisure time – cinema, playgrounds, taverns, etc.<br>Every worker has an education level. They can go to school or college to improve this level. If their education is too low they cannot work; if their education is high enough they can be a teacher, or researcher, or work in factories with special requirements.<h2 class="bb_tag">ECONOMY SIMULATION</h2> The game simulates the economy system. There are no fixed prices! Costs of everything are defined by the economic situation. For example, the cost of steel is calculated from the price of iron, coal and work, and also partially from the cost of steel mill construction.<br>You purchase or sell commodities for money (dollars or rubles). But be careful, as it is possible that if you buy or sell for high values you will affect the price of the commodity on the market. You may be able to purchase for a higher price or sell it cheaper.<br>As time increases, so does complexity. Some resources or products may become more expensive (as, for example, less human work is needed with advanced technologies), so later with more complexity, it may be necessary to be as self-sufficient as possible.
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

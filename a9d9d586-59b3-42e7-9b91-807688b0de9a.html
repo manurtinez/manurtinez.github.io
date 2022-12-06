@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Domestic Dog</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Domestic Dog</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:18</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-11/10/2022">11/10/2022</a> 23:32:00</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-10/4/2015">10/4/2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Casual">Casual</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Sean Davy">Sean Davy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Sean Davy">Sean Davy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/340340" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/340340/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/340340/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=340340" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/340340" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=340340" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/340340/achievements" target="_blank">Logros</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					WARNING: Contains mild violence, smoking, drug use, public urination, public pooping, explosive poop. Content may not be suitable for Cats. Any similarities to real dogs is purely coincidental.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/340340/extras/community_image_1428345582.gif?t=1663309769" /><br><br>Take control of a randomized dog in a randomized house and survive the harsh domestic life!  Play, eat, drink, and sleep, remember to take care of yourself or else you will die. Explore the city and interact with the world, discover items and secrets. Play frisbee, dig up bones, and shop at retail stores. Stay in a good mood, level up and buy new toys! Play however you want, piss on everything, blow up cars and hydrants with explosive poop, earn money and try to fill your house up with toys and gadgets. <br>Over<strong> 300,000,000</strong> possible dog combinations!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/340340/extras/breeds_1.png?t=1663309769" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/340340/extras/breeds_2.png?t=1663309769" /><br><strong><h2 class="bb_tag">[FEATURES]</h2></strong><ul class="bb_ul"><li>Virtually unlimited combinations of dogs and houses<br></li><li>Pee on stuff! Use it as a weapon or to mark your territory<br></li><li>Get enough food, water, fun, exercise and sleep to stay healthy and alive<br></li><li>Eat your own poop<br></li><li>Chase Squirrels<br></li><li>Try not to get fleas!<br></li><li>Throw a Dog Party and invite strange dogs into your home<br></li><li>Visit Dog Arcade to play BoneMuncher and other crappy retro classics<br></li><li>Play with other dogs and animals<br></li><li>Shop at stores like Dog Depot, Bark Buy, and Gadget Store<br></li><li>Enjoy the effects of special powerups like iced coffee, explosive poop, or roller skates<br></li><li>P.U.P. Boy 7000 - instantly view detailed stats and status of dog and change options<br></li><li>Explore town and surrounding areas for secrets &amp; new ways to earn XP<br></li><li>Tons of toys to play with<br></li><li>Equal representation of male and female dogs<br></li><li>Day/night cycle <br></li><li>Listen to your Stereo &amp; Music Player, find new records across the land to unlock music <br></li><li>Free updates for life! (when/if new content is made, there has been several updates since release)</li></ul><strong><h2 class="bb_tag">[MILLIONS OF DOGS]</h2></strong><ul class="bb_ul"><li>Take control of labs, robot dogs, huskies, hover dogs, weird alien dogs and more!<br></li><li>Types of Dogs include: Biological, Alien, Robot, VR, Reptilian, Ghost, &amp; Android<br></li><li>Embrace yourself and level up or delete yourself and start a fresh life as a new dog in a new home</li></ul><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/340340/extras/dog_types5.png?t=1663309769" /><br><strong><h2 class="bb_tag">[MINIGAMES AND ACTIVITIES]</h2></strong><ul class="bb_ul"><li>Rob a dogfood warehouse and never go hungry again<br></li><li>Play frisbee<br></li><li>Herd sheep<br></li><li>Dig for bones and money<br></li><li>Explore the cemetery and try to uncover secrets, beware of ghost dogs</li></ul> <strong><h2 class="bb_tag">[CUSTOMIZE YOUR HOME]</h2></strong><ul class="bb_ul"><li>Use your hard-earned dogcoins to buy gadgets, art, and more for your home<br></li><li>Buy an old cheap tube TV, or save up for a plasma<br></li><li>Purchase a range of stereos from boomboxs to electrostatic towers<br></li><li>Go to Dog Depot to modify your wallpaper, floors, windows, and door to suit your style<br></li><li>Visit Barkbuy (petstore) to buy a new bed, food bowls and more!</li></ul><strong><h2 class="bb_tag">[COOL POWERUPS and WEAPONS]</h2></strong><ul class="bb_ul"><li>Find a pair of Rollerskates to zip around town<br></li><li>Eat some chocolate to acquire explosive poop<br></li><li>Get high on Dogflower</li></ul><strong><h2 class="bb_tag">[CUSTOMIZE YOUR LOOK]</h2></strong><ul class="bb_ul"><li>Change your collar<br></li><li>Go to the Paw and Spray for a new coat of fur</li></ul><br><strong><h2 class="bb_tag">[THANK YOU FOR CHECKING OUT DOMESTIC DOG!]</h2></strong><br>Some profits may go towards purchase and care of actual IRL dog
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

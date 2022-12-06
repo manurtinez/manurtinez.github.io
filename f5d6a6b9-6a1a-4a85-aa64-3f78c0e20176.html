@@ -1,0 +1,363 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Karambola</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Karambola</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-24/7/2022">24/7/2022</a> 23:48:22</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-2/9/2022">2/9/2022</a> 18:32:48</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-7/9/2016">7/9/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Holy Pangolin">Holy Pangolin</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://holypangolin.itch.io/karambola" target="_blank">Página de la tienda</a><br/><a href="http://pcgamingwiki.com/w/index.php?search=Karambola" target="_blank">PCGamingWiki</a><br/><a href="https://store.steampowered.com/app/765480/Karambola/" target="_blank">Steam</a><br/><a href="https://www.facebook.com/karambolagame/" target="_blank">Community</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-2D">2D</a><br/><a href="#quicklink-Abstract">Abstract</a><br/><a href="#quicklink-artgame">artgame</a><br/><a href="#quicklink-Cute">Cute</a><br/><a href="#quicklink-Funny">Funny</a><br/><a href="#quicklink-mind-bending">mind-bending</a><br/><a href="#quicklink-Music">Music</a><br/><a href="#quicklink-Point & Click">Point & Click</a><br/><a href="#quicklink-Puzzle">Puzzle</a><br/><a href="#quicklink-Relaxing">Relaxing</a><br/><a href="#quicklink-Surreal">Surreal</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<p class="text-center"><strong>SUMMARY</strong>
+</p>
+<p class="text-center"><span>In the middle of the summer, a pack of evil bird-thoughts</span>
+</p>
+<p class="text-center"><span>attacked a peaceful village of emotional fruit people.</span>
+</p>
+<p class="text-center"><span>They have been separated, each sent into a different season,</span>
+</p>
+<p class="text-center"><span>focused on their own loneliness and internal landscape of troubles.</span>
+</p>
+<p class="text-center"><span>If you wish, help Karambola on his quest to rescue</span>
+</p>
+<p class="text-center"><span>his friends from the power of evil thoughts.</span></p>
+<p class="text-center"><span><img src="https://img.itch.zone/aW1nLzkyMTEyMDcucG5n/original/14Z039.png" loading="lazy"></span><span></span></p>
+<p class="text-center">&nbsp;<img src="https://img.itch.zone/aW1nLzkyMTExOTYucG5n/original/BA9B7j.png" loading="lazy"><strong><img src="https://img.itch.zone/aW1nLzkyMTExOTgucG5n/original/B8HQzS.png" loading="lazy"></strong></p>
+<div class="text-center"><iframe src="//www.youtube.com/embed/Rzs1Foi62z4" allowfullscreen="" width="500" height="281" frameborder="0"></iframe><br></div>
+<p class="text-center">Please be patient, the game may take a couple of minutes to download (100MB).
+</p>
+<p class="text-center">
+	Please use Chrome or Firefox, a computer and a stable internet connection. And a half an hour or an hour of your time.</p>
+<p class="text-center">
+	It's my first game, so be open-minded, enjoy!
+</p>
+<p class="text-center">
+	If you like it, support or drop me a line at holypangolin (at) gmail.com:) Thanks:)<br>
+	<span></span>
+</p>
+<p class="text-center"><strong>SOCIAL MEDIA:</strong></p>
+<p class="text-center"><strong>find me as @holypangolin&nbsp;mostly everywhere:</strong></p>
+<p class="text-center"><a href="https://www.instagram.com/holypangolin/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Instagram</a>
+</p>
+<p class="text-center"><a href="https://mastodon.social/@holypangolin" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Mastodon</a>
+</p>
+<p class="text-center"><a href="https://www.youtube.com/channel/UCHt89DA7slYsAekgfAVG5UA" target="_blank" rel="nofollow noopener" referrerpolicy="origin">YouTube</a>
+</p>
+<p class="text-center"><a href="https://twitter.com/holypangolin" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Twitter</a>
+</p>
+<p class="text-center"><a href="https://www.facebook.com/holypangolin" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Facebook</a>
+</p>
+<p class="text-center"><a href="https://linktr.ee/agata.nawrot" target="_blank" rel="nofollow noopener" referrerpolicy="origin">more links and merch!</a>
+</p>
+<p class="text-center"><strong>PLEASE SUBSCRIBE!</strong></p>
+<p class="text-center"><strong>I&nbsp;post teasers of new projects and behind the scenes of old ones!<br></strong></p>
+<p class="text-center"><span></span><span></span></p>
+<p class="text-center">
+	<iframe src="//giphy.com/embed/l0HlDPrBU8Cl8qyZy" allowfullscreen="" style="background-color: initial" width="480" height="480" frameborder="0">
+	</iframe></p>
+<p class="text-center">
+	<span><strong>CONTROLS</strong></span>
+</p>
+<p class="text-center">
+	<span>Mouse (left-click), touchscreen, keyboard, or gamepad.</span></p>
+<p><strong><br></strong></p>
+<p class="text-center"><strong>LANGUAGES</strong></p>
+<p class="text-center">
+	<span>On itch.io: English, but it's not required to play the game. (Just to read the intro and credits.)</span></p>
+<p class="text-center">On <a href="https://store.steampowered.com/app/765480/Karambola/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Steam</a>:&nbsp;English, 中文, русский, português brasileiro, polski</p>
+<p><br></p>
+<p class="text-center"><strong>OTHER AVAILABLE PLATFORMS</strong></p>
+<p class="text-center">&nbsp;<a href="https://store.steampowered.com/app/765480/Karambola/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Steam</a>,&nbsp;<a href="https://flathub.org/apps/details/com.agatanawrot.karambola" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Flathub</a>,&nbsp;<a href="https://play.google.com/store/apps/details?id=com.agatanawrot.karambola&amp;gl=US" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Android/Google Play</a>, <a href="https://holypangolin.com/fdroid" target="_blank" rel="nofollow noopener" referrerpolicy="origin">F-Droid</a><br></p>
+<p class="text-center"><iframe src="https://store.steampowered.com/widget/765480/" width="646" height="190" frameborder="0"></iframe></p>
+<p class="text-center"><span></span><span></span></p>
+<p class="text-center">
+	<span><strong>CREDITS</strong></span>
+</p>
+<p class="text-center">
+	<span>A game by Agata Nawrot at Holy Pangolin Studio</span>
+</p>
+<p class="text-center">
+	<span>...and friends :) more credits in the game.</span></p>
+<p><br></p>
+<p class="text-center"><span><strong>MUSIC BANDS:</strong></span>
+</p>
+<p class="text-center">
+	<span><a href="https://www.facebook.com/Avellmusic/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Avell</a></span></p>
+<p class="text-center"><a href="https://www.facebook.com/WaitingForCharonMusic/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Benoit Fleuret</a><span></span></p>
+<p class="text-center">
+	<span><a href="https://www.facebook.com/birdofeither/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Bird of Either</a>&nbsp;</span></p>
+<p class="text-center"><br></p>
+<p class="text-center"><strong>REWARDS &amp; WALLPAPERS</strong></p>
+<p class="text-center">
+	For every person or fruit-head that contributes at least 5$ to Karambola,&nbsp;</p>
+<p class="text-center">you'll get a set of 2 original wallpapers</p>
+<p class="text-center">(sizes 1920x1200px and 1600x1200px)</p>
+<p class="text-center">and 3 fruit people in print quality to hang on your wall:)</p>
+<p class="text-center">Write me please at holypangolin@gmail.com to claim it.</p>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzkyMTA5OTUucG5n/original/jrgEsn.png" loading="lazy"></p>
+<p class="text-center">
+	<strong>I poured all my heart and savings into this game.</strong>
+</p>
+<p class="text-center">
+	<strong>PLEASE SUPPORT!</strong>
+</p>
+<hr>
+<p class="text-center">
+	Thanks <a href="https://gdevelop.io/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">GDevelop</a> for the possibility to make my first game!</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

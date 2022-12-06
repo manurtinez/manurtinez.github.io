@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rolling Line</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Rolling Line</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:28</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-11/10/2022">11/10/2022</a> 22:03:51</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-27/4/2018">27/4/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-90">90</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Casual">Casual</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Gaugepunk Games">Gaugepunk Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Gaugepunk Games">Gaugepunk Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Includes Level Editor">Includes Level Editor</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-VR">VR</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-VR Keyboard / Mouse">VR Keyboard / Mouse</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-VR Motion Controllers">VR Motion Controllers</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-VR Room-Scale">VR Room-Scale</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-VR Seated">VR Seated</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-VR Standing">VR Standing</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Workshop">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/754150" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/754150/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/754150/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=754150" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/754150" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=754150" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/754150/workshop/" target="_blank">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					Rolling Line is a <strong>model railway simulator </strong>where you can build your own layouts and share them for others to play! <br>Explore and drive trains on pre-made official layouts, any one of 1000s of player-made layouts on the Steam Workshop, or create your own!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/754150/extras/magazine.png?t=1643829472" /><h2 class="bb_tag">Read in-game magazines</h2><br>Rolling Line has its own official magazine! <br>Read about updates, community content, layout building guides and much more. <br>You can read these magazines in-game or even view them online here:<br><a href="https://steamcommunity.com/linkfilter/?url=https://www.gaugepunk.com/magazine/" target="_blank" rel=" noopener"  >https://www.gaugepunk.com/magazine/</a><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/754150/extras/workshop.png?t=1643829472" /><h2 class="bb_tag">Download and share through the Steam Workshop</h2><br>Layouts and liveries (train color schemes) can be shared and downloaded on the Steam Workshop!<br>Browse over 1.5k layouts and over 3k liveries made by countless skilled community members.<br><br>Simply click to subscribe to workshop items, and they will appear in-game, simple as that! <br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/754150/extras/street.png?t=1643829472" /><h2 class="bb_tag">Explore pre-made official layouts</h2><br>The built-in official layouts include scenery and trains from New Zealand, America and Brazil! <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/754150/extras/map.png?t=1643829472" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/754150/extras/map_santaFe.png?t=1643829472" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/754150/extras/map_paranapiacaba.png?t=1643829472" /><h2 class="bb_tag">Features:</h2><br><ul class="bb_ul"><li>Play on both PC (without VR) and in VR (HTC Vive, Valve Index (with finger tracking!), Oculus Rift and Windows Mixed Reality)<br></li><li>Build and share your custom layouts on the Steam workshop<br></li><li>Share and download custom train paint-schemes (liveries) on the Steam workshop<br></li><li>Operate table-top model railways standing in human-scale<br></li><li>Explore anywhere in your layout on foot in miniature scale<br></li><li>Drive trains in human-scale with hand-held controllers <br></li><li>Drive trains in miniature-scale from within the cab<br></li><li>Multiple trains to choose from (all completely free!) like diesel, steam and electric <br></li><li>Wide range of freight and passenger wagons <br></li><li>Pickup and throw wagons as physics objects<br></li><li>Sandbox style world, where custom tracks and scenery can be built anywhere<br></li><li>Dynamic day/night cycle <br></li><li>Dynamic weather <br></li><li>Set up working signals and level crossings<br></li><li>Overhead wires and track electrification <br></li><li>Simple color painting system, where you can create custom colors to paint props and scenery <br></li><li>Save files are in plain text, so you can easily copy and share them <br></li><li>Locomotive and wagon modding with custom 3D models and textures <br></li><li>Custom 3D terrain using modding to import your own 3D models<br></li><li>Read in-game magazines with information about updates and community content</li></ul><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/754150/extras/control.png?t=1643829472" /><h2 class="bb_tag">Play in VR or on PC</h2><br>Rolling Line has been built from the beginning to be both a PC game (first person style) and a VR game.<br>You can play with a keyboard a mouse just like any PC game or train sim, but if you have a VR headset (Oculus, Vive, Valve Index and WMR) connected then it will automatically launch in VR. <br>If you have the Valve Index controllers then you can even make use of full finger movement tracking! <br><br>VR controls can also be fully re-binded using the SteamVR Input System. <br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/754150/extras/switch.png?t=1643829472" /><h2 class="bb_tag">Just like a model railway</h2><br>Layouts in Rolling Line are designed to look, feel and operate like a real hobbyists model railroad, with switch boards to control the tracks, portable hand-held controllers to drive trains, and complete control over the rooms lighting.<br><br>Freely push wagons around on the rails with your hands to build trains and take control of them using DCC-style hand-held controllers!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/754150/extras/custom.png?t=1643829472" /><h2 class="bb_tag">Build your own tracks and scenery</h2><br>Place pieces of track and scenery to build your own huge (or tiny) railways! <br>Choose from a huge range of props like trees, buildings, vehicles, shapes, etc.<br><br>Paint different colors onto props and terrain using a simple color painting system.<br>Choose from a variety of colors or edit your own hues and palettes.<br><br>Place down chunks of terrain to build hills and path ways, or use external 3D modelling tools to create your own complex 3D terrain (via modding). <br><br>You can build your custom layouts entirely by hand in VR, or play on PC to make use of PC-only map making shortcuts.<br><br>You can share your layouts on the Steam workshop and easily download other peoples layouts.<br>All layouts you make can be easily backed up and shared in plain text, which means you can copy-paste an entire save game between friends! <br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/754150/extras/wagons.png?t=1643829472" /><h2 class="bb_tag">Explore in human scale or miniature</h2><br>Switch between human-sized room scale and railway-sized miniature scale at any time, any where. You are not limited to only driving trains in miniature, but can fully explore and entire layout at the scale of a person. <br><br>Drive trains from right inside the cab in miniature, and view the world from the driver's perspective!<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/754150/extras/signal.png?t=1643829472" /><h2 class="bb_tag">Choices of locomotion</h2><br>Choose between a range of locomotion options, including standard teleporting, grabbing the world around you to move yourself around and free directional movement with the trackpad.<br><br>Other options like manual rotation (if you cannot use room scale) and setting your player height help support a range of VR setups.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/754150/extras/logo.png?t=1643829472" /><br><br>Rolling line offers an immersive experience of both controlling a model railroad and driving trains from within the world itself. Whether you enjoy exploring model railways, the joy of controlling model trains, the experience of a scenic railway journey or the freedom of building your own tracks and creations, then Rolling Line can deliver!
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

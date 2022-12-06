@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Desolate Hope</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> The Desolate Hope</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:15</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-13/10/2022">13/10/2022</a> 21:32:41</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-30/4/2012">30/4/2012</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-86">86</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Scott Cawthon">Scott Cawthon</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Scott Cawthon">Scott Cawthon</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/298180" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/298180/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/298180/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=298180" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/298180" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=298180" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					On a distant edge of an unknown planet, an abandoned structure sits in silence. Constructed by an unmanned research vessel sent from Earth, the Lun Infinus station was designed to run simulations for a five year period, exploring possibilities of human colonization in the case that Earth became uninhabitable. Developed during an age of ambition and wealth, the project was quickly abandoned when interest faded in the following years. <br><br>The last transmission from Earth occurred more than thirty years ago. The Lun Infinus station contained five sentient computers, Derelicts, built with certain levels of mobility in the case of emergency or need for relocation. Each of these Derelicts was to formulate their own plan for colonization based on thousands of hours of simulations. Given the amount of time that has passed however, the simulations have become very elaborate and bizarre. Meanwhile however, a mysterious computer virus has emerged. The virus of unknown origins has been slowly ravaging the Derelicts. Because of this, more and more CPU processing power has been needed for anti-virus measures, leaving less power for the simulations. Coffee is the last mobile resident of the station, a small service robot who spends his days keeping the station and the Derelicts operational as they perform their daily tasks. Since CPU power is slim, Coffee has been cutting corners to find ways around the virus. By using small subsystems and less vital CPU's scattered through the station in lesser devices, Coffee has designed a line of digital helpers, each simply called a D-Co, or &quot;Digital Counterpart&quot;, to assist him in fighting the virus and keeping the station operational. Eventually the virus gets the best of each D-Co, and Coffee tries to create an improved D-Co using a different CPU. The latest is D-Co 9, built using the code of a simple computer game. Coffee dedicates his own CPU to be used for the main simulations, putting D-Co in charge of moving his body throughout the station, taking care of the needs of the Derelicts, and fighting off virus attacks when they occur.<br><br>GAMEPLAY:<br>The Desolate Hope mixes several gameplay styles. On the station and in the simulations, the game is a platformer. You will shoot enemies, collect powerups and bits (money) and upgrade yourself and your virtual battlers. When you enter a mini-simulation (the old arcade style screens) then the game becomes an 8-bit overhead dungeon crawler. There you can farm money and gain options to customize your battle experiences. When you encounter a virus boss, the game shifts to a JRPG style battle where you must use the mouse to select from your various options to defeat your opponent. Almost everything outside of these battles is aimed at upgrading your abilities and increasing your stats for these fights, they are the real challenge of the game.<br><br>&quot;The Desolate Hope, isn't great just because of its stunning artwork, its gripping sci-fi story, and its coffee pot protagonist. It also packs a triple punch with three distinct gameplay types, each skillfully woven together. The side scrolling action has different platforming elements for each section, the overhead adventure distills fun elements of a classic Zelda (including walls you can walk through or destroy) and the turn-based, RPG-style boss battles are visually mesmerizing and tough.&quot; <strong><a href="https://steamcommunity.com/linkfilter/?url=http://-IndieGames.com" target="_blank" rel=" noopener"  >-IndieGames.com</a></strong><br><br>&quot;From a gameplay point of view The Desolate Hope mixes platforming with overhead adventure segments and semi turn-based battles. This is already intriguing, but I'm more impressed by its stunning visual style.&quot; <strong><a href="https://steamcommunity.com/linkfilter/?url=http://-mtv.com" target="_blank" rel=" noopener"  >-mtv.com</a></strong><br><br>&quot;The Desolate Hope is developed by Scott Games and upon booting it up, you will notice the great artwork the game uses. It combines three gameplay genres, side scrolling, overhead adventure and a turn-based RPG styled battles. It might sound like a messy mash up but the game is able to pull it off without a hitch and gamers are in for a unique experience. Offering hours of gameplay, a unique leveling system and a day-and-night cycle.&quot; <strong><a href="https://steamcommunity.com/linkfilter/?url=http://-TheBitBag.com" target="_blank" rel=" noopener"  >-TheBitBag.com</a></strong><br><br>&quot;The Desolate Hope constantly plays with the very idea of playing a video game. Unlike many modern games, it is hyper-aware of its gameness. There are games inside of games, simulations inside of simulations, mini-games inside of boss fights. And the fact that you’re playing as an AI that developed from a computer game is a very hard wink at the exhaustive level of metagaming that’s going on.&quot; <strong><a href="https://steamcommunity.com/linkfilter/?url=http://-GamesThatExist.com" target="_blank" rel=" noopener"  >-GamesThatExist.com</a></strong><br><br>&quot;There are plenty of hours of gameplay, a nonlinear path allowing for exploration, and detailed art design. Now you can't beat that...&quot;<br><strong><a href="https://steamcommunity.com/linkfilter/?url=http://-GameSpot.com" target="_blank" rel=" noopener"  >-GameSpot.com</a></strong><br><br>&quot;I very much enjoy a lot about this game; it’s takes on platforming, dungeon-crawling, and RPGs is unique and well mixed together so that one type of play benefits the other. It also has some incredible visuals, with very detailed character designs and a classic cyberpunk attitude, but not also without a bit of whimsy as well (one derelict has given up on his mission, becoming a toymaker and has begun recreating his simulation with child-like automatons).&quot; <strong><a href="https://steamcommunity.com/linkfilter/?url=http://-GamingSymmetry.com" target="_blank" rel=" noopener"  >-GamingSymmetry.com</a></strong><br><br>&quot;So after encountering this on Rock Paper Shotgun, I was ready to declare my indie game of the year. Because any game made rock solid out of derelict, insane robots just makes my not-so-inner geek squeal. How insane are the robots? Each is actively running a matrix like test bed, and.... Well, one was building a mining simulator, decided that was too depressing, and started making toys. Another is trying to capture the artistic essence of the soul, but cant seem to make anything run for more than five seconds. The next is attempting to rebuild humanity out of two tissue samples. Then there's the one still running straight, he seems curiously nice... And the last one's dead and frozen. But still drawing power...Then there's the coffee pot. Which is you. Sort of. And hey, bonus! You've got fifteen days to live, and you're the ninth attempt at straightening things out. Good luck!&quot; <strong>-an enthusiastic fan</strong>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

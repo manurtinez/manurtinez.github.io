@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Egyptian Senet</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Egyptian Senet</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-5/10/2022">5/10/2022</a> 23:16:21</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-11/10/2022">11/10/2022</a> 22:52:35</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-20/8/2015">20/8/2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-74">74</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Casual">Casual</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Simulation">Simulation</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Sports">Sports</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Ezzat Studios">Ezzat Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Ezzat Studios">Ezzat Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Pvp">Pvp</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Shared/Split Screen Pvp">Shared/Split Screen Pvp</a><br/><a href="default%20list%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/391580" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/391580/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/391580/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=391580" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/391580" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=391580" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-No Cloud Saves">No Cloud Saves</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					** New Important Note: <br />
+To make the gameplay easier and more fun, you can press spacebar to throw the casting sticks instead of mouse click.<br />
+<br />
+====== Awards ====== <br />
+◆ 1st Winner Of Egypt e-Content Award 2013.<br />
+◆ Silver Winner in 2013 W3 Awards.<br />
+◆ 3rd Winner Of Gaming Egypt Contest 2012 organized by iTi.<br />
+◆ Nominated for the World Summit Award 2013 in e-Entertainment &amp; Games from Egypt.<br />
+◆ Nominated for Top 20 Mobile Apps in Mobily KSA Developers Award 2014.<br />
+<br />
+<br />
+Egyptian Senet (Ancient Egypt Game).<br />
+The Mysterious Afterlife Journey And The Favorite Pastime Of The Pharaoh Tutankhamun.<br />
+The Artifact Of The World's Oldest Board Game Found In King Tut's Tomb, Beside The Golden Coffin &amp; Sarcophagus.<br />
+<br />
+After performing opening of the mouth ceremony on your mummy by Anubis, you start your afterlife journey protected by Eye of Horus(Wadjet) to pass through the underworld realm of Osiris, challenging an invisible adversary inside an Egyptian hidden tomb in The Valley of the Queens located near the better known Valley of the Kings, on the west bank of the Nile river across from Thebes (Luxor).<br />
+<br />
+Senet is a board game from predynastic and ancient Egypt, it is the earliest known record of a backgammon , checkers, draughts, ludo and chess like games.<br />
+<br />
+The oldest hieroglyph representing a Senet game dates to around 3500 BC.The full name of the game in Egyptian was meaning &quot;The game of passing&quot;.<br />
+<br />
+Games have been around for thousands of years, but none are older than the ancient game of Senet, invented by the Egyptians roughly 3500 or 5000 years ago. It is believed that this two-player board game originated as a popular form of recreation with both royalty and peasantry. But by the mid-13th century BC, Senet had evolved into a more religious ritual. Some depictions from this time period forward show the game being played not by two people, but rather as a deceased player competing against an invisible adversary, interpreted by some to symbolize the deceased players own soul.<br />
+<br />
+The board has become a metaphor for the afterlife with pawns moving across the board just as a soul moves through layers of the netherworld after death. Reaching the final space and leaving the board is the goal of the game, just as reaching Horus and leaving the netherworld was the goal for the Egyptians after their death for attaining rebirth with the gods Isis &amp; Osiris, Sekhmet &amp; Bastet holding the Egyptian Ankh or the papyrus scepter.<br />
+<br />
+The game board consists of 30 squares or slots, arranged in 3 horizontal rows of 10. Pawns move from left to right through row 1, then drop down and move from right to left through row 2. Dropping down again, pawns move from left to right along row 3 and finally, off the board. The game uses the rules developed by Timothy Kendall in his 1978 work, Passing Through the Netherworld :The Meaning and Play of Senet, an Ancient Egyptian Funerary Game.<br />
+<br />
+The game includes five special squares, governed by their own rules, each containing a hieroglyphic. Square 15 is the House of Rebirth; square 26 is the House of Beauty; square 27 is the House of Water: square 28 is the House of the Three Truths; square 29 is the House of Two Truths; and square 30, the last, is the House of Horus, the Egyptian falcon-god and lord of the sky.<br />
+<br />
+Egyptian Senet is a pharaonic challenging game that combines luck,strategy,and magic features authentic photos of ancient Egyptian temples,plus artistically crafted graphics and animation of an ancient stone game board and pieces,set in an echoing,tomb-like chamber.Ritualistic music plus sound effects of stone pieces moving recreate the atmosphere of predynastic Egypt.The App's Icon shows the Egyptian Queen Nefertari playing Senet in her tomb,she was the great wife of the pharaoh Ramesses II(Ramses)Rio. Also many Egyptian Queens have a similar photos playing Senet such as Cleopatra,Nefertiti the great royal wife of Akhenaten,and the Queen Hatshepsut the wife of Thutmose II.<br />
+<br />
+Supported Languages in year 2017 - 2018 - 2019 -2020 : (English, Arabic, French, Spanish, German, Italian, Dutch, Russian, Japanese, Korean, Chinese, Portuguese-Brazil)<br />
+Suitable for everyone Adults and Kids.<br />
+Perfect relaxing and time killer (timekiller) game with good prices for all countries.<br />
+Used for Meditation, Relaxation, Calming and Detachment.<br />
+Highly Recommended for anyone interested in Board Games,Ancient Egypt,Egyptology,Archeology,Sphinx,Mythology,zen,indie,invaluable,Archaic,Arcane,Agony,ABC,Edu,Educational,Historic,Historical,Culture,Cultural,Solitaire,Dice,card,cards,slot,slots,snakes and ladders,Monopoly,Domino,Dominoes,Dominos,tabletop simulator,tabletop,simulator,casino,capcom,sigil,magic,satan,satanic,demon,demons,e3,game jam,games,Steam Gift Cards,steam,gift,card,Catan,Freddy,luck,strategy,special,Atypical,Tomb Raider,Stargate,Star Gate,Indiana Jones,Nancy Drew,Age of Wonders,Stardew Valley,streets of rage 4,monogame,OCTOPATH TRAVELER,NieR:Automata,Rust,Compulsive,Tic Tac Toe,xo,dota,dota2,dota 2,valve,Counter,Strike,Counter-Strike,Counter Strike,steam,steam games,snake,snakes,and,ladders,vr,big ramy,mo,salah,mo salah,liverpool,momo,seo,aso,pes,fifa,football,manager,Very Positive,将棋,among us,Overwhelmingly,Positive,Outstanding,Unconventional,Uncommon,Unusual,Quirky,Bizarre,Unfamiliar,Games,Adobe Air,Flash,Flex,HTML5, javaScript,xamarin,mono game,unity,electron,crossPlatform,cross Platform games,coronavirus,corona,virus,covid-19,anxiety relief, stress relief.<br />
+<br />
+For More Info (Information):<br />
+Support Email: ezzatstudios@gmail.com<br />
+Facebook Page: https://www.facebook.com/EgyptianSenet
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
