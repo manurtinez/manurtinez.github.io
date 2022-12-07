@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Total War: Warhammer III</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('afea37bb-0f7f-4bc1-b246-fdada356189c/385dff06-4871-41e0-ab45-15ee9fa12fc9.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="afea37bb-0f7f-4bc1-b246-fdada356189c/fa774d13-9ed7-42e4-8724-9958a3ffb69b.png"/> Total War: Warhammer III</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="afea37bb-0f7f-4bc1-b246-fdada356189c/a6baaa8f-97fb-4766-9aea-a5bc737bff4b.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-6/12/2022">6/12/2022</a> 23:29:27</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Plan to Play">Plan to Play</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_library_ascendente_name_ascendente.html#quicklink-Xbox">Xbox</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="#quicklink-Xbox Game Pass">Xbox Game Pass</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-17/2/2022">17/2/2022</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-SEGA">SEGA</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-SEGA">SEGA</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-Game Pass">Game Pass</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<p>
+IMMORTAL EMPIRES IS OUT NOW.
+</p>
+<p>
+Immortal Empires is the culmination of the entire Total War: WARHAMMER series. Combining the campaign maps, races, and factions from all three games* into a single, epic sandbox campaign. It’s the most complete and definitive Warhammer strategy experience ever conceived!  
+</p>
+<p>
+*Owners of Total War WARHAMMER III must own Total War: WARHAMMER and Total War: WARHAMMER II to start their own Immortal Empires Campaign. However, players who only own WARHAMMER III may join Immortal Empires multiplayer campaigns launched by an owner of all three games.
+</p>
+<p>
+THE WORLD TEETERS ON THE BRINK OF CHAOS
+</p>
+<p>
+The last roar of a dying god ruptures the boundary between worlds, opening a portal to the Realm of Chaos. From this maelstrom, the four Ruinous Powers – Khorne, Nurgle, Tzeentch and Slaanesh – emerge, spreading darkness and despair. The stern warriors of Kislev and the vast empire of Grand Cathay stand at the threshold, as a vengeful Daemon Prince vows to destroy those who corrupted him. The coming conflict will engulf all. Will you conquer your daemons? Or command them? 
+</p>
+<p>
+RAISE A MIGHTY ARMY<br />
+With seven unique races and hundreds of units under your command, raise an army and dominate in epic real-time battles across a world of breathtaking scale and spectacle.
+</p>
+<p>
+BUILD AN EMPIRE<br />
+In the most ambitious and groundbreaking Total War title to date, dive into a captivating narrative that will take you to the mind-bending Realm of Chaos and back again. Forge your empire in a strategy sandbox that ensures no two campaigns are ever the same.
+</p>
+<p>
+CHOOSE YOUR HERO<br />
+Play as 10 Legendary Lords! Will you side with the Chaos Gods and take one of their Daemonic Champions, play as an ancient transforming Dragon from Grand Cathay, defend the frozen nation of Kislev with the Ice Queen or play the ultimate villain as the Daemon Prince?
+</p>
+<p>
+UNLEASH YOUR INNER DAEMON<br />
+Customise the Daemon Prince to your own unique design with a huge suite of body parts and powers, creating billions of potential combinations to suit your own playstyle.
+</p>
+<p>
+MULTIPLAYER CHAOS<br />
+Multiplayer is now bigger than ever. With the vast 8-player Realm of Chaos multiplayer campaign, the intense 1 v 1 Domination mode, the story-driven multiplayer campaigns built around Kislev and Grand Cathay and ranked &amp; custom battles, there’s no shortage of ways to cause chaos with friends.
+</p>
+<p>
+
+</p>
+
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
