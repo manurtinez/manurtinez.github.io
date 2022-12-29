@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Holdfast: Nations At War</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('7f5548f6-d726-4927-a5f9-52a5a645c636/6815c72c-32a0-4772-a7fe-c5e7c4e90c21.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="7f5548f6-d726-4927-a5f9-52a5a645c636/949bfed2-6a1e-4be3-94bd-b685b401cb89.png"/> Holdfast: Nations At War</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="7f5548f6-d726-4927-a5f9-52a5a645c636/69e1dab7-1038-408a-805e-0b836882dacf.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>5h 2m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="#quicklink-28/7/2022">28/7/2022</a> 20:45:42</TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="#quicklink-1/5/2022">1/5/2022</a> 19:14:23</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-1/5/2022">1/5/2022</a> 19:15:54</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20combobox%20quicklinks_completionstatus_ascendente_name_ascendente.html#quicklink-Abandonado">Abandonado</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-21/9/2017">21/9/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-88">88</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Simulation">Simulation</a><br/><a href="default%20list%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Anvil Game Studios">Anvil Game Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="#quicklink-Anvil Game Studios">Anvil Game Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="#quicklink-Achievements">Achievements</a><br/><a href="#quicklink-Includes Level Editor">Includes Level Editor</a><br/><a href="#quicklink-Leaderboards">Leaderboards</a><br/><a href="#quicklink-Multiplayer">Multiplayer</a><br/><a href="#quicklink-Online Pvp">Online Pvp</a><br/><a href="#quicklink-Pvp">Pvp</a><br/><a href="#quicklink-Stats">Stats</a><br/><a href="#quicklink-Trading Cards">Trading Cards</a><br/><a href="#quicklink-Workshop">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/589290" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/589290/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/589290/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=589290" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/589290" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=589290" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/589290/achievements" target="_blank">Logros</a><br/><a href="https://steamcommunity.com/app/589290/workshop/" target="_blank">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/about_us_fade3.png?t=1650550841" /><br><br>Holdfast: Nations At War is an online multiplayer first and third person shooter focusing on a combination of teamwork and individual skill. Take part in historic clashes on land and at sea waged by the most powerful nations raging across eras.<br><br>Charge into battle with over <strong>150 players</strong> per server!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/holdfastfrontlines_aboutgame_banner_battleacrosseras.gif?t=1650550841" /><h2 class="bb_tag"><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_holdfastnaw_aboutgame_icon_title.png?t=1650550841" /> <strong>Battle Across Eras</strong></h2><br><br>Engage in large-scale battles across multiple eras! Ram your shot and fire impressive displays of coordinated volleys in the Napoleonic Wars or take to the frontlines of World War One and charge at the officers whistle to death or victory. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_holdfastnaw_aboutgame_banner_fightonmultiplefronts2.gif?t=1650550841" /><h2 class="bb_tag"><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_holdfastnaw_aboutgame_icon_title.png?t=1650550841" /> <strong>Fight On Multiple Fronts</strong></h2><br><br><strong><i>Enlist in the Army</i></strong><br>Work with your comrades to storm enemy fortifications or support the fight from the rear with artillery fire. Keep the line steady in open field battles and lead your men to victory.<br><br><strong><i>Join the Navy</i></strong><br>Experience what it’s like to be a crew member on board a military sailing ship. Raise the sails, launch rowboats, fire the cannons and cooperate to keep your vessel afloat.<br><br><strong><i>Join the Coast Guard</i></strong><br>Fend off naval vessels and marine-filled rowboats with chain, round and grape shot as they attempt to capture your fortified position. Guard the shoreline to the last man standing and repel the invader.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_holdfastnaw_aboutgame_banner_battlefieldroles3.gif?t=1650550841" /><h2 class="bb_tag"><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_holdfastnaw_aboutgame_icon_title.png?t=1650550841" /> <strong>Battlefield Roles</strong></h2><br><br>Steadfast men in the ranks and take lead as an officer, fire devastating musket volleys while standing shoulder to shoulder, support the fight from the rear with artillery, construct defences or boldly charge with bayonet equipped. <br><br>A grand selection of 21 classes to play with. Every class comes with its own traits and abilities which are crucial for your team’s survival.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/holdfastnaw_classes2.png?t=1650550841" /><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_holdfastnaw_aboutgame_banner_ridetoglory.gif?t=1650550841" /><h2 class="bb_tag"><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_holdfastnaw_aboutgame_icon_title.png?t=1650550841" /> <strong>Ride To Glory</strong></h2><br><br>Ride into battle with your trusty steed and engage the enemy with swords, pistols and carbines from horseback. Mounted Hussar, Cuirassier and Dragoon classes quickly traverse the field of battle.<br><br>Gallop away now as tides of glory await!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_aboutgame_classshowcase_cavalry.png?t=1650550841" /><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_holdfastnaw_aboutgame_banner_warringnations.gif?t=1650550841" /><h2 class="bb_tag"><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_holdfastnaw_aboutgame_icon_title.png?t=1650550841" /> <strong>Warring Nations</strong></h2><br><br>Take the King’s shilling or fight for the Emperor in smoke-filled Napoleonic field battles! Declare your allegiance to the British Empire, French Empire, Kingdom of Prussia, Russian Empire, or the Kingdom of Italy and strive for dominance over the battlefield.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_aboutgame_factionsshowcase2.png?t=1650550841" /><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_holdfastnaw_aboutgame_banner_ageofsail.gif?t=1650550841" /><h2 class="bb_tag"><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_holdfastnaw_aboutgame_icon_title.png?t=1650550841" /> <strong>Age Of Sail</strong></h2><br><br>Experience the thrill of naval combat aboard mighty warships from the golden age of sail! Assemble the crew and take to the seven seas as you master several unique ship types each with their own distinct characteristics. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_aboutgame_shipsshowcase6.png?t=1650550841" /><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_holdfastnaw_aboutgame_banner_regimentallinebattles.gif?t=1650550841" /><h2 class="bb_tag"><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/steam_holdfastnaw_aboutgame_icon_title.png?t=1650550841" /> <strong>Regimental Linebattles</strong></h2><br><br>Enlist with a regiment and rise through the ranks! Partake in fierce organised events where the community battles in formations relevant to the Napoleonic era. Hone your skills because you can be sure that your opponents will too.<br><br>Join the community Discord to get involved.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/589290/extras/holdfastnaw_seperator.png?t=1650550841" />
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
